@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human Health &amp; Disease Study Portal — KCET &amp; NEET Question Banks (100 Questions)</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background: #ffffff !important;
+      }
+      .q-card {
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm no-print">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <button id="brandHomeBtn" type="button" class="flex items-center gap-2.5 text-left group">
+          <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-extrabold text-sm shadow-sm group-hover:bg-indigo-700 transition">HH</div>
+          <div>
+            <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Human Health &amp; Disease Study Portal</h1>
+            <p class="text-xs text-slate-500">KCET &amp; NEET PYQ Question Banks &bull; 100 Aligned Questions</p>
+          </div>
+        </button>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs sm:text-sm font-semibold text-slate-600">
+        <button id="navHomeBtn" type="button" class="px-3 py-1.5 rounded-lg bg-white text-indigo-700 shadow-xs transition">Home Portal</button>
+        <button id="navKcetBtn" type="button" class="px-3 py-1.5 rounded-lg hover:text-slate-900 transition">KCET Bank (45)</button>
+        <button id="navNeetBtn" type="button" class="px-3 py-1.5 rounded-lg hover:text-slate-900 transition">NEET PYQ Bank (55)</button>
+        <button id="navNotesBtn" type="button" class="px-3 py-1.5 rounded-lg hover:text-slate-900 transition">Revision Notes</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6">
+
+    <!-- VIEW 1: HOME PORTAL DASHBOARD -->
+    <section id="homeView" class="space-y-6">
+      <!-- Hero Banner -->
+      <div class="rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white p-6 sm:p-8 shadow-md">
+        <span class="inline-block px-3 py-1 bg-white/10 text-indigo-200 text-xs font-semibold rounded-full mb-3 tracking-wide">
+          Complete Biology Exam Preparation Portal &bull; NCERT Class 12 Chapter 7
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">
+          Human Health &amp; Disease: KCET &amp; NEET PYQ Portal
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed mb-6">
+          Practice 100 aligned multiple-choice questions across KCET and NEET Previous Year Questions (PYQs), complete with pathogen-vector matching tables, antibody structures, retrovirus life cycles, cancer &amp; immunity pathways, instant answer verification, and high-yield revision notes.
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <button id="heroStartKcetBtn" type="button" class="px-5 py-2.5 rounded-xl bg-white text-indigo-950 font-bold text-sm shadow hover:bg-slate-100 transition">
+            Open KCET Bank (45 Qs)
+          </button>
+          <button id="heroStartNeetBtn" type="button" class="px-5 py-2.5 rounded-xl bg-indigo-600 text-white font-bold text-sm shadow hover:bg-indigo-700 transition">
+            Open NEET PYQ Bank (55 Qs)
+          </button>
+          <button id="heroOpenNotesBtn" type="button" class="px-5 py-2.5 rounded-xl bg-slate-800 text-slate-200 font-semibold text-sm hover:bg-slate-700 transition">
+            View Revision Notes
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Statistics & Progress Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Portal Bank</p>
+          <p class="text-2xl font-extrabold text-slate-900 mt-1">100 Questions</p>
+          <p class="text-xs text-slate-500 mt-1">45 KCET + 55 NEET PYQ aligned items</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs">
+          <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider">KCET Practice Progress</p>
+          <p id="statKcetProgress" class="text-2xl font-extrabold text-indigo-700 mt-1">0 / 45</p>
+          <p id="statKcetScore" class="text-xs text-slate-500 mt-1">Score: 0 correct (0%)</p>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs">
+          <p class="text-xs font-bold text-emerald-600 uppercase tracking-wider">NEET PYQ Progress</p>
+          <p id="statNeetProgress" class="text-2xl font-extrabold text-emerald-700 mt-1">0 / 55</p>
+          <p id="statNeetScore" class="text-xs text-slate-500 mt-1">Score: 0 correct (0%)</p>
+        </div>
+      </div>
+
+      <!-- Module Selection Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Module 1: KCET Bank -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-indigo-300 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold">Module 1 &bull; Q1–Q45</span>
+              <span class="text-xs font-semibold text-slate-400">45 MCQs</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">KCET Human Health &amp; Disease Question Bank</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Covers typhoid (Widal test), pneumonia, malaria life cycle (sporozoites, liver, RBC, haemozoin), amoebiasis, ascariasis, filariasis, ringworm fungi, innate barriers (PMNL, lysozyme, interferons), antibody structure ($H_2L_2$, IgA colostrum, IgE allergy), CMI and graft rejection, active vs passive immunization, Hepatitis B yeast vaccine, lymphoid organs (Bone marrow, Thymus, Spleen, MALT 50%), AIDS replication (reverse transcriptase, macrophages factory, $T_H$ drop, ELISA), Cancer (contact inhibition, metastasis, carcinogens, $lpha$-interferon), and Drugs (heroin acetylation of morphine, cannabinoids, cocaine, Datura).
+            </p>
+            <ul class="text-xs text-slate-500 space-y-1.5 mb-6">
+              <li class="flex items-center gap-1.5">&bull; Includes formatted match-the-following and assertion-reasoning items</li>
+              <li class="flex items-center gap-1.5">&bull; Switch between clean Document View and Interactive Practice Quiz</li>
+            </ul>
+          </div>
+          <div class="flex items-center gap-3 pt-2">
+            <button id="cardKcetDocBtn" type="button" class="flex-1 py-2 rounded-xl bg-indigo-600 text-white font-semibold text-xs hover:bg-indigo-700 transition">
+              Read Question Bank
+            </button>
+            <button id="cardKcetQuizBtn" type="button" class="flex-1 py-2 rounded-xl bg-indigo-50 text-indigo-700 font-semibold text-xs hover:bg-indigo-100 transition">
+              Start Practice Quiz
+            </button>
+          </div>
+        </div>
+
+        <!-- Module 2: NEET PYQ Bank -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-emerald-300 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold">Module 2 &bull; Q1–Q55</span>
+              <span class="text-xs font-semibold text-slate-400">55 MCQs</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">NEET PYQ Human Health &amp; Disease Question Bank</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+              Comprehensive 2000–2024 national entrance bank covering match-the-column matrices, diagnostic tests, antibody heavy and light chain structure, retrovirus replication steps, cancer hallmarks, withdrawal symptoms, and verified NCERT rationales.
+            </p>
+            <ul class="text-xs text-slate-500 space-y-1.5 mb-6">
+              <li class="flex items-center gap-1.5">&bull; Rigorous NEET-standard matching matrices and deep conceptual questions</li>
+              <li class="flex items-center gap-1.5">&bull; Filter by chapter section, keyword, or practice mode</li>
+            </ul>
+          </div>
+          <div class="flex items-center gap-3 pt-2">
+            <button id="cardNeetDocBtn" type="button" class="flex-1 py-2 rounded-xl bg-emerald-600 text-white font-semibold text-xs hover:bg-emerald-700 transition">
+              Read Question Bank
+            </button>
+            <button id="cardNeetQuizBtn" type="button" class="flex-1 py-2 rounded-xl bg-emerald-50 text-emerald-700 font-semibold text-xs hover:bg-emerald-100 transition">
+              Start Practice Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: QUESTION BANK VIEW (FOR KCET & NEET) -->
+    <section id="bankView" class="hidden space-y-4">
+      <!-- Bank Header Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+        <div>
+          <button id="backToPortalBtn" type="button" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 mb-1">
+            &larr; Back to Home Portal
+          </button>
+          <h2 id="bankTitle" class="text-xl font-bold text-slate-900">Question Bank</h2>
+          <p id="bankSubtitle" class="text-xs text-slate-500">KCET &bull; Chapter 7: Human Health &amp; Disease</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Document vs Quiz Mode Toggle -->
+          <div class="flex items-center bg-slate-100 p-1 rounded-xl text-xs font-bold text-slate-600">
+            <button id="modeDocBtn" type="button" class="px-3 py-1.5 rounded-lg bg-white text-indigo-700 shadow-xs transition">Document View</button>
+            <button id="modeQuizBtn" type="button" class="px-3 py-1.5 rounded-lg hover:text-slate-900 transition">Practice Quiz</button>
+          </div>
+
+          <!-- Answer Key Master Toggle -->
+          <button id="toggleAnswersBtn" type="button" class="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold bg-white text-slate-700 hover:bg-slate-50 shadow-xs transition">
+            Hide Answer Key
+          </button>
+
+          <!-- Print / PDF Export Button -->
+          <button id="printBtn" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 shadow-xs transition no-print">
+            Print / Save PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Quiz Banner (Visible in Quiz Mode) -->
+      <div id="quizBanner" class="hidden bg-indigo-50 border border-indigo-200 rounded-xl p-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p class="text-xs font-bold text-indigo-800 uppercase tracking-wider">Practice Quiz Active</p>
+          <p id="quizScoreText" class="text-sm font-semibold text-slate-800 mt-0.5">
+            Attempted: <span id="quizAttempted">0</span> / <span id="quizTotal">0</span> &bull; 
+            Correct: <span id="quizCorrect" class="text-emerald-700">0</span> &bull; 
+            Wrong: <span id="quizWrong" class="text-rose-600">0</span> &bull; 
+            Accuracy: <span id="quizAccuracy">0%</span>
+          </p>
+        </div>
+        <button id="resetQuizBtn" type="button" class="px-3 py-1.5 rounded-lg bg-white border border-indigo-300 text-xs font-bold text-indigo-700 hover:bg-indigo-100 transition">
+          Reset Quiz
+        </button>
+      </div>
+
+      <!-- Filter Sub-toolbar -->
+      <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-xs flex flex-wrap items-center justify-between gap-3">
+        <!-- Search Input -->
+        <div class="flex-1 min-w-[200px]">
+          <input id="searchInput" type="text" placeholder="Search questions, pathogens, diseases, drugs..." class="w-full text-xs px-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        </div>
+
+        <!-- Topic Filter Pills -->
+        <div id="topicFilterPills" class="flex flex-wrap items-center gap-1.5 text-xs">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Questions List Container -->
+      <div id="questionsContainer" class="space-y-4">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Quick Answer Key Matrix -->
+      <div id="quickAnswerMatrix" class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs">
+        <h3 class="text-sm font-bold text-slate-800 mb-3 flex items-center justify-between">
+          <span>Quick Answer Key Matrix</span>
+          <span class="text-xs font-normal text-slate-500">Click any question number to jump</span>
+        </h3>
+        <div id="matrixGrid" class="grid grid-cols-5 sm:grid-cols-10 md:grid-cols-15 gap-2 text-center text-xs">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: REVISION NOTES -->
+    <section id="notesView" class="hidden space-y-6">
+      <div class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+        <div>
+          <button id="notesBackHomeBtn" type="button" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 mb-1">
+            &larr; Back to Home Portal
+          </button>
+          <h2 class="text-xl font-bold text-slate-900">High-Yield NCERT Revision Notes</h2>
+          <p class="text-xs text-slate-500">Class 12 Chapter 7: Human Health and Disease</p>
+        </div>
+        <button id="notesPrintBtn" type="button" class="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 shadow-xs transition no-print">
+          Print Notes
+        </button>
+      </div>
+
+      <!-- Notes Section 1: Common Infectious Diseases Master Table -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
+        <h3 class="text-base font-bold text-indigo-900 border-b border-indigo-100 pb-2 mb-4 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+          1. Common Human Infectious Diseases: Pathogens, Organs &amp; Diagnostics
+        </h3>
+        
+        <div class="overflow-x-auto mb-2">
+          <table class="w-full text-xs text-left border-collapse border border-slate-200">
+            <thead class="bg-slate-100 text-slate-800 font-bold">
+              <tr>
+                <th class="border border-slate-200 p-2.5">Disease</th>
+                <th class="border border-slate-200 p-2.5">Causative Pathogen</th>
+                <th class="border border-slate-200 p-2.5">Target Organ / Site</th>
+                <th class="border border-slate-200 p-2.5">Mode of Transmission</th>
+                <th class="border border-slate-200 p-2.5">Diagnostic Symptoms &bull; Confirmatory Test</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              <tr class="hover:bg-slate-50">
+                <td class="border border-slate-200 p-2.5 font-bold text-indigo-700">Typhoid</td>
+                <td class="border border-slate-200 p-2.5"><em>Salmonella typhi</em> (Bacterium)</td>
+                <td class="border border-slate-200 p-2.5">Small intestine &rarr; blood &rarr; other organs</td>
+                <td class="border border-slate-200 p-2.5">Contaminated food and drinking water</td>
+                <td class="border border-slate-200 p-2.5">High fever (39&deg;&ndash;40&deg;C), stomach pain, constipation, intestinal perforation; confirmed by <strong>Widal test</strong> (Mary Mallon / Typhoid Mary)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="border border-slate-200 p-2.5 font-bold text-indigo-700">Pneumonia</td>
+                <td class="border border-slate-200 p-2.5"><em>Streptococcus pneumoniae</em> &amp; <em>Haemophilus influenzae</em></td>
+                <td class="border border-slate-200 p-2.5">Alveoli (air-filled sacs) of lungs</td>
+                <td class="border border-slate-200 p-2.5">Inhaling droplets/aerosols, sharing utensils</td>
+                <td class="border border-slate-200 p-2.5">Alveoli filled with fluid, chills, cough; severe cases show cyanosis (lips &amp; fingernails turn gray to bluish)</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="border border-slate-200 p-2.5 font-bold text-indigo-700">Common Cold</td>
+                <td class="border border-slate-200 p-2.5">Rhino viruses</td>
+                <td class="border border-slate-200 p-2.5">Nose &amp; upper respiratory passage (<strong>NOT lungs</strong>)</td>
+                <td class="border border-slate-200 p-2.5">Inhalation of droplets, pens, books, cups, doorknobs</td>
+                <td class="border border-slate-200 p-2.5">Nasal congestion, sore throat, hoarseness, cough, headache; lasts 3&ndash;7 days</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="border border-slate-200 p-2.5 font-bold text-emerald-700">Malaria</td>
+                <td class="border border-slate-200 p-2.5"><em>Plasmodium vivax, P. malariae, P. falciparum</em></td>
+                <td class="border border-slate-200 p-2.5">Liver cells &rarr; Red Blood Cells (RBCs)</td>
+                <td class="border border-slate-200 p-2.5">Bite of female <em>Anopheles</em> mosquito</td>
+                <td class="border border-slate-200 p-2.5">RBC rupture releases toxic <strong>haemozoin</strong> &rarr; recurring chills &amp; fever every 3&ndash;4 days. <em>P. falciparum</em> causes fatal malignant malaria</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="border border-slate-200 p-2.5 font-bold text-emerald-700">Amoebiasis</td>
+                <td class="border border-slate-200 p-2.5"><em>Entamoeba histolytica</em> (Protozoan)</td>
+                <td class="border border-slate-200 p-2.5">Large intestine</td>
+                <td class="border border-slate-200 p-2.5">Houseflies as mechanical carriers from faeces to food/water</td>
+                <td class="border border-slate-200 p-2.5">Constipation, abdominal pain and cramps, stools with excess mucous and dark blood clots</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="border border-slate-200 p-2.5 font-bold text-amber-700">Ascariasis</td>
+                <td class="border border-slate-200 p-2.5"><em>Ascaris lumbricoides</em> (Roundworm)</td>
+                <td class="border border-slate-200 p-2.5">Intestinal tract</td>
+                <td class="border border-slate-200 p-2.5">Contaminated water, vegetables, soil containing eggs</td>
+                <td class="border border-slate-200 p-2.5">Internal bleeding, muscular pain, fever, anemia, blockage of the intestinal passage</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="border border-slate-200 p-2.5 font-bold text-amber-700">Filariasis (Elephantiasis)</td>
+                <td class="border border-slate-200 p-2.5"><em>Wuchereria bancrofti</em> &amp; <em>W. malayi</em> (Filarial worm)</td>
+                <td class="border border-slate-200 p-2.5">Lymphatic vessels of lower limbs and genital organs</td>
+                <td class="border border-slate-200 p-2.5">Bite of female mosquito vector (<em>Culex</em>)</td>
+                <td class="border border-slate-200 p-2.5">Slowly developing chronic inflammation, gross elephantine swelling of legs and deformities of scrotum/genitals</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="border border-slate-200 p-2.5 font-bold text-purple-700">Ringworm</td>
+                <td class="border border-slate-200 p-2.5"><em>Microsporum, Trichophyton, Epidermophyton</em> (Fungi)</td>
+                <td class="border border-slate-200 p-2.5">Keratinized skin, nails, scalp, groin folds</td>
+                <td class="border border-slate-200 p-2.5">Soil, towels, clothes, combs of infected persons</td>
+                <td class="border border-slate-200 p-2.5">Appearance of dry, scaly ring-like lesions with intense itching; thrive in warm, moist skin folds</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Notes Section 2: Malaria Life Cycle Flowchart -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
+        <h3 class="text-base font-bold text-indigo-900 border-b border-indigo-100 pb-2 mb-4 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+          2. Complete Life Cycle of Plasmodium (Two Hosts: Human &amp; Mosquito)
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-700">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-2">
+            <h4 class="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+              Human Host (Asexual Phase &bull; Intermediate Host)
+            </h4>
+            <ol class="list-decimal list-inside space-y-1.5 leading-relaxed">
+              <li><strong>Inoculation:</strong> Female <em>Anopheles</em> bites human, injecting infectious motile <strong>sporozoites</strong> stored in its salivary glands into blood.</li>
+              <li><strong>Pre-erythrocytic Cycle:</strong> Sporozoites reach the liver within 30 minutes, multiply asexually (schizogony) in hepatocytes, bursting liver cells to release cryptozoites/merozoites into blood.</li>
+              <li><strong>Erythrocytic Cycle:</strong> Parasites penetrate red blood cells (RBCs), feed on hemoglobin, reproduce asexually, and burst RBCs.</li>
+              <li><strong>Fever Paroxysm:</strong> Rupture of RBCs releases <strong>haemozoin</strong> toxin into plasma &rarr; chills and high fever recurring every 3&ndash;4 days.</li>
+              <li><strong>Gametocytogenesis:</strong> Some merozoites differentiate into sexual stages &mdash; male (micro) and female (macro) <strong>gametocytes</strong> in human RBCs.</li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-2">
+            <h4 class="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Mosquito Host (Sexual Phase &bull; Definitive Host &amp; Vector)
+            </h4>
+            <ol class="list-decimal list-inside space-y-1.5 leading-relaxed">
+              <li><strong>Blood Meal:</strong> Female <em>Anopheles</em> mosquito bites an infected human and takes up mature gametocytes with RBCs.</li>
+              <li><strong>Fertilization:</strong> Fertilization between micro- and macrogametes takes place within the lumen of the <strong>mosquito's gut</strong>.</li>
+              <li><strong>Ookinete &amp; Oocyst:</strong> The motile zygote (ookinete) penetrates the stomach wall, forming an encysted oocyst on the outer gut surface.</li>
+              <li><strong>Sporogony:</strong> Oocyst undergoes asexual nuclear divisions to form thousands of slender <strong>sporozoites</strong>.</li>
+              <li><strong>Migration:</strong> Mature infective sporozoites burst from oocyst and migrate through hemolymph to lodge in the <strong>salivary glands</strong> of the mosquito, ready to infect a new human host.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes Section 3: Innate Immunity, Acquired Immunity & Antibodies -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
+        <h3 class="text-base font-bold text-indigo-900 border-b border-indigo-100 pb-2 mb-4 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+          3. Immunity, Antibody Structure ($H_2L_2$) &amp; Graft Rejection
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs leading-relaxed text-slate-700 mb-4">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <h4 class="font-bold text-slate-900 mb-2">4 Innate Immunity Barriers</h4>
+            <ul class="space-y-1.5">
+              <li>&bull; <strong>Physical:</strong> Skin (keratinized stratum corneum) and mucus coating of respiratory, gastrointestinal, and urogenital tracts.</li>
+              <li>&bull; <strong>Physiological:</strong> Gastric HCl in stomach, lysozyme in saliva, tears from eyes.</li>
+              <li>&bull; <strong>Cellular:</strong> Polymorphonuclear leukocytes (PMNL-neutrophils), blood monocytes, tissue macrophages, and Natural Killer (NK) lymphocytes.</li>
+              <li>&bull; <strong>Cytokine:</strong> <strong>Interferons</strong> secreted by virus-infected cells to protect adjacent healthy cells.</li>
+            </ul>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <h4 class="font-bold text-slate-900 mb-2">Acquired Immunity Features</h4>
+            <ul class="space-y-1.5">
+              <li>&bull; <strong>Pathogen-specific &amp; Memory-based:</strong> Primary response is of low intensity; secondary (anamnestic) response is rapid and highly intensified.</li>
+              <li>&bull; <strong>Humoral Immune Response:</strong> B-lymphocytes produce an army of proteins called <strong>antibodies</strong> in blood plasma.</li>
+              <li>&bull; <strong>Cell-Mediated Immunity (CMI):</strong> Mediated by T-lymphocytes. Differentiates self from non-self and is directly responsible for <strong>graft rejection</strong> in organ transplants.</li>
+            </ul>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+            <h4 class="font-bold text-slate-900 mb-2">Antibody Molecule ($H_2L_2$)</h4>
+            <ul class="space-y-1.5">
+              <li>&bull; <strong>Structure:</strong> 4 polypeptide chains &mdash; 2 identical small light (L) chains and 2 identical longer heavy (H) chains joined by disulfide bridges.</li>
+              <li>&bull; <strong>Antigen-Binding Site:</strong> Formed by variable regions ($V_H$ and $V_L$) at the N-terminal Fab ends.</li>
+              <li>&bull; <strong>Major Classes:</strong><br>
+              &bull; <strong>IgA:</strong> In colostrum and secretions.<br>
+              &bull; <strong>IgE:</strong> Mediates allergic reactions.<br>
+              &bull; <strong>IgG:</strong> Most abundant, crosses placenta.<br>
+              &bull; <strong>IgM:</strong> Pentameric, first response.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
+          <strong>Organ Transplantation &bull; Tissue Matching:</strong> Grafts cannot be taken from just anyone because the host's cell-mediated immunity (CMI) will reject foreign MHC antigens. Tissue matching and blood group matching are mandatory before transplant, and recipients must take immunosuppressants (e.g. Cyclosporin A) for life.
+        </div>
+      </div>
+
+      <!-- Notes Section 4: Lymphoid Organs, AIDS, Cancer & Drugs -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
+        <h3 class="text-base font-bold text-indigo-900 border-b border-indigo-100 pb-2 mb-4 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+          4. Lymphoid Organs, AIDS, Cancer &amp; Drug Abuse Summary
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed text-slate-700 mb-4">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-900">Lymphoid Organs Overview</h4>
+            <p>&bull; <strong>Primary Lymphoid Organs:</strong> <em>Bone marrow</em> (produces all blood cells) and <em>Thymus</em> (lobate organ near heart; large at birth, atrophies by puberty). Sites of lymphocyte origin and maturation.</p>
+            <p>&bull; <strong>Secondary Lymphoid Organs:</strong> <em>Spleen</em> (bean-shaped, blood filter, erythrocyte reservoir), <em>Lymph nodes</em> (trap tissue antigens), tonsils, Peyer's patches, appendix.</p>
+            <p>&bull; <strong>MALT:</strong> Mucosa-associated lymphoid tissue lines major respiratory, digestive, and urogenital tracts; constitutes <strong>50%</strong> of human lymphoid tissue.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-900">AIDS (HIV Retrovirus)</h4>
+            <p>&bull; <strong>Structure:</strong> Enveloped virus containing diploid single-stranded RNA and reverse transcriptase.</p>
+            <p>&bull; <strong>Replication:</strong> Enters macrophages &rarr; viral DNA synthesized by reverse transcriptase &rarr; integrates into host DNA &rarr; macrophage acts as an <strong>'HIV factory'</strong>.</p>
+            <p>&bull; <strong>Immunodeficiency:</strong> HIV simultaneously attacks and lyses helper T-lymphocytes ($T_H$), causing progressive $T_H$ collapse &rarr; opportunistic infections (<em>Mycobacterium</em>, <em>Toxoplasma</em>, fungi). Diagnosed by <strong>ELISA</strong>.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-900">Cancer Oncology Hallmarks</h4>
+            <p>&bull; <strong>Loss of Contact Inhibition:</strong> Cancer cells proliferate continuously, forming benign or malignant tumors.</p>
+            <p>&bull; <strong>Metastasis:</strong> Malignant cells slough off into blood, lodging at distant sites to form secondary tumors (most feared property).</p>
+            <p>&bull; <strong>Carcinogens:</strong> Physical (X-rays, gamma, UV rays), Chemical (tobacco smoke), Biological (oncogenic viruses with viral oncogenes; cellular proto-oncogenes <em>c-onc</em>).</p>
+            <p>&bull; <strong>Treatment:</strong> Surgery, radiotherapy, chemotherapy, and biological response modifiers like <strong>α-interferon</strong>.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-900">Drugs and Chemical Substances Abused</h4>
+            <p>&bull; <strong>Opioids (Heroin / Smack):</strong> Diacetylmorphine from latex of <em>Papaver somniferum</em>. Depressant, slows down body functions.</p>
+            <p>&bull; <strong>Cannabinoids:</strong> From <em>Cannabis sativa</em> inflorescences (marijuana, hashish, charas, ganja). Inhaled/ingested; affects cardiovascular system.</p>
+            <p>&bull; <strong>Cocaine / Crack:</strong> From <em>Erythroxylum coca</em>. Blocks dopamine reuptake; CNS stimulant causing euphoria; excessive doses cause hallucinations.</p>
+            <p>&bull; <strong>Hallucinogens:</strong> <em>Atropa belladonna</em> and <em>Datura</em>.</p>
+            <p>&bull; <strong>Tobacco:</strong> Nicotine alkaloid stimulates adrenal glands to release adrenaline/nor-adrenaline &rarr; elevated BP and heart rate; CO causes hypoxia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive JavaScript Application -->
+  <script>
+    const KCET_DATA = [{"num": 1, "topic": "Bacterial & Viral Diseases", "tag": "KCET 2024", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2024 Biology Paper", "stem": "The principle of vaccination and immunisation is based on which fundamental property of the immune system?", "extras": [], "options": [{"marker": "A", "text": "Memory"}, {"marker": "B", "text": "Specificity"}, {"marker": "C", "text": "Diversity"}, {"marker": "D", "text": "Plasticity"}], "answerIndex": 0, "explanation": "NCERT Class 12 Chapter 7 states: 'The principle of immunisation or vaccination is based on the property of memory of the immune system.' Vaccines generate memory B-cells and T-cells that recognise pathogens quickly on re-exposure."}, {"num": 2, "topic": "AIDS & Retrovirus", "tag": "KCET 2024", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2024 Biology Paper", "stem": "The genome of HIV replicates inside human macrophages with the help of which enzyme?", "extras": [], "options": [{"marker": "A", "text": "DNA Polymerase"}, {"marker": "B", "text": "RNA Polymerase"}, {"marker": "C", "text": "Reverse Transcriptase"}, {"marker": "D", "text": "DNA Ligase"}], "answerIndex": 2, "explanation": "After HIV enters human macrophages, its viral RNA genome replicates to form complementary viral DNA using the enzyme reverse transcriptase. The viral DNA then incorporates into the host genome."}, {"num": 3, "topic": "Drugs & Alcohol Abuse", "tag": "KCET 2024", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2024 Biology Paper", "stem": "Read the following statements:\nStatement I: Morphine is obtained by acetylation of Heroin.\nStatement II: Cannabinoids are known for their effects on the cardiovascular system of the body.\n\nWhich of the following options is correct with reference to these statements?", "extras": [], "options": [{"marker": "A", "text": "Both Statement I and Statement II are correct"}, {"marker": "B", "text": "Statement I is correct and Statement II is incorrect"}, {"marker": "C", "text": "Statement I is incorrect and Statement II is correct"}, {"marker": "D", "text": "Both Statement I and Statement II are incorrect"}], "answerIndex": 2, "explanation": "Statement I is incorrect because Heroin is obtained by the acetylation of morphine (not vice versa). Statement II is correct because natural cannabinoids interact with receptors in the brain and significantly affect the cardiovascular system."}, {"num": 4, "topic": "Protozoan & Helminthic Diseases", "tag": "KCET 2023", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2023 Biology Paper", "stem": "In the life cycle of Plasmodium, the rupture of red blood cells (RBCs) is associated with the release of a toxic substance responsible for the recurring chill and high fever called:", "extras": [], "options": [{"marker": "A", "text": "Haemozoin"}, {"marker": "B", "text": "Haemoglobin"}, {"marker": "C", "text": "Interferon"}, {"marker": "D", "text": "Histamine"}], "answerIndex": 0, "explanation": "When Plasmodium parasites multiply within and burst RBCs, they release the toxic metabolic by-product haemozoin, which induces the characteristic chills and fever recurring every 3 to 4 days."}, {"num": 5, "topic": "Bacterial & Viral Diseases", "tag": "KCET 2023", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2023 Biology Paper", "stem": "Typhoid fever caused by Salmonella typhi is routinely diagnosed and confirmed by which serological test?", "extras": [], "options": [{"marker": "A", "text": "Widal test"}, {"marker": "B", "text": "ELISA test"}, {"marker": "C", "text": "Mantoux test"}, {"marker": "D", "text": "Schick test"}], "answerIndex": 0, "explanation": "Typhoid fever is clinically diagnosed and confirmed using the agglutination-based Widal test. Mary Mallon ('Typhoid Mary') was a famous carrier of this bacterium."}, {"num": 6, "topic": "Immunity & Antibodies", "tag": "KCET 2022", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2022 Biology Paper", "stem": "Which immunoglobulin (antibody) is predominantly present in the yellowish fluid colostrum secreted by mothers during the initial days of lactation?", "extras": [], "options": [{"marker": "A", "text": "IgA"}, {"marker": "B", "text": "IgG"}, {"marker": "C", "text": "IgE"}, {"marker": "D", "text": "IgM"}], "answerIndex": 0, "explanation": "Colostrum secreted by the mammary glands during early lactation is rich in secretory IgA antibodies, conferring essential natural passive immunity to protect the newborn infant from enteric infections."}, {"num": 7, "topic": "Immunity & Antibodies", "tag": "KCET 2022", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2022 Biology Paper", "stem": "Graft rejection following allogeneic kidney or heart transplantation is primarily mediated by which component of the immune system?", "extras": [], "options": [{"marker": "A", "text": "Cell-mediated immunity (CMI) via T-lymphocytes"}, {"marker": "B", "text": "Humoral immune response via B-lymphocytes"}, {"marker": "C", "text": "Innate physical barriers like skin"}, {"marker": "D", "text": "Erythrocyte agglutination"}], "answerIndex": 0, "explanation": "The human body differentiates 'self' and 'non-self' tissues; cell-mediated immunity (CMI), mediated by cytotoxic and helper T-lymphocytes, is directly responsible for graft rejection."}, {"num": 8, "topic": "Immunity & Antibodies", "tag": "KCET 2021", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2021 Biology Paper", "stem": "Virus-infected host cells secrete non-specific antiviral glycoproteins that protect adjacent non-infected cells from further viral replication. These are called:", "extras": [], "options": [{"marker": "A", "text": "Interferons"}, {"marker": "B", "text": "Antibodies"}, {"marker": "C", "text": "Colostrums"}, {"marker": "D", "text": "Histamines"}], "answerIndex": 0, "explanation": "Interferons are cytokine barriers of innate immunity secreted by virus-infected cells to shield neighbouring healthy cells from subsequent viral propagation."}, {"num": 9, "topic": "Protozoan & Helminthic Diseases", "tag": "KCET 2021", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2021 Biology Paper", "stem": "Elephantiasis (filariasis), characterized by chronic inflammation and swelling of the lymphatic vessels of the lower limbs, is caused by:", "extras": [], "options": [{"marker": "A", "text": "Wuchereria bancrofti and Wuchereria malayi"}, {"marker": "B", "text": "Ascaris lumbricoides"}, {"marker": "C", "text": "Entamoeba histolytica"}, {"marker": "D", "text": "Trichophyton rubrum"}], "answerIndex": 0, "explanation": "Filarial worms Wuchereria bancrofti and W. malayi reside in the lymphatic vessels of the lower limbs and genital organs for years, causing progressive blockage and chronic deformities (elephantiasis)."}, {"num": 10, "topic": "Vaccination & Allergies", "tag": "KCET 2020", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2020 Biology Paper", "stem": "During an allergic reaction, mast cells degranulate and release which chemical mediators?", "extras": [], "options": [{"marker": "A", "text": "Histamine and Serotonin"}, {"marker": "B", "text": "Interferon and Insulin"}, {"marker": "C", "text": "Haemozoin and Heparin"}, {"marker": "D", "text": "Morphine and Cocaine"}], "answerIndex": 0, "explanation": "In response to allergens binding to membrane-bound IgE antibodies, sensitized mast cells rapidly release inflammatory vasoactive mediators including histamine and serotonin."}, {"num": 11, "topic": "Lymphoid Organs", "tag": "KCET 2020", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2020 Biology Paper", "stem": "Mucosa-Associated Lymphoid Tissue (MALT) constitutes approximately what percentage of all lymphoid tissue in the human body?", "extras": [], "options": [{"marker": "A", "text": "50 per cent"}, {"marker": "B", "text": "20 per cent"}, {"marker": "C", "text": "75 per cent"}, {"marker": "D", "text": "10 per cent"}], "answerIndex": 0, "explanation": "NCERT notes: 'There is lymphoid tissue located within the lining of the major tracts (respiratory, digestive and urogenital tracts) called mucosa-associated lymphoid tissue (MALT). It constitutes about 50 per cent of the lymphoid tissue in human body.'"}, {"num": 12, "topic": "Bacterial & Viral Diseases", "tag": "KCET 2019", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2019 Biology Paper", "stem": "In severe cases of pneumonia caused by Streptococcus pneumoniae, which clinical sign is observed due to insufficient oxygenation?", "extras": [], "options": [{"marker": "A", "text": "Lips and fingernails turning gray to bluish in colour"}, {"marker": "B", "text": "Profuse watery diarrhoea with rice-water stools"}, {"marker": "C", "text": "Extreme swelling of the scrotum and lower limbs"}, {"marker": "D", "text": "Appearance of dry scaly ring-like lesions on the scalp"}], "answerIndex": 0, "explanation": "In severe pneumonia, alveolar spaces become filled with inflammatory exudate fluid, causing severe hypoxemia such that lips and fingernails turn gray to cyanotic bluish."}, {"num": 13, "topic": "Bacterial & Viral Diseases", "tag": "KCET 2019", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2019 Biology Paper", "stem": "Common cold caused by Rhino viruses differs from pneumonia in that Rhino viruses:", "extras": [], "options": [{"marker": "A", "text": "Infect the nose and respiratory passage but not the lungs"}, {"marker": "B", "text": "Infect the pulmonary alveoli and fill them with fluid"}, {"marker": "C", "text": "Can be completely cured by penicillin antibiotic therapy"}, {"marker": "D", "text": "Are transmitted solely through the bite of female Culex mosquitoes"}], "answerIndex": 0, "explanation": "Rhino viruses infect the upper respiratory tract (nasal epithelium and pharynx) but do NOT infect the lungs/alveoli, unlike Streptococcus pneumoniae which directly targets pulmonary alveoli."}, {"num": 14, "topic": "Protozoan & Helminthic Diseases", "tag": "KCET 2018", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2018 Biology Paper", "stem": "Which insect vector is responsible for transmitting the infective stage (sporozoites) of the malarial parasite to human beings?", "extras": [], "options": [{"marker": "A", "text": "Female Anopheles mosquito"}, {"marker": "B", "text": "Female Aedes mosquito"}, {"marker": "C", "text": "Female Culex mosquito"}, {"marker": "D", "text": "Male Anopheles mosquito"}], "answerIndex": 0, "explanation": "Female Anopheles mosquitoes serve as the biological vector and definitive host for Plasmodium, inoculating infectious sporozoites stored in their salivary glands during blood feeding."}, {"num": 15, "topic": "Protozoan & Helminthic Diseases", "tag": "KCET 2018", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2018 Biology Paper", "stem": "Ringworm infection in humans is characterized by dry, scaly lesions on the skin, nails, and scalp accompanied by intense itching. It is caused by fungi belonging to the genera:", "extras": [], "options": [{"marker": "A", "text": "Microsporum, Trichophyton, and Epidermophyton"}, {"marker": "B", "text": "Aspergillus, Penicillium, and Neurospora"}, {"marker": "C", "text": "Puccinia, Ustilago, and Agaricus"}, {"marker": "D", "text": "Rhizopus, Mucor, and Albugo"}], "answerIndex": 0, "explanation": "Dermatophyte fungi belonging to Microsporum, Trichophyton, and Epidermophyton digest keratinized epidermal layers in skin folds, causing ringworm."}, {"num": 16, "topic": "Immunity & Antibodies", "tag": "KCET 2017", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2017 Biology Paper", "stem": "An antibody molecule is represented structurally as H2L2 because it consists of:", "extras": [], "options": [{"marker": "A", "text": "Two small light chains and two longer heavy chains joined by disulfide bonds"}, {"marker": "B", "text": "Two heavy polypeptide chains and two lipid bilayers"}, {"marker": "C", "text": "Four identical heavy chains and no light chains"}, {"marker": "D", "text": "Two histone proteins and two nucleic acid segments"}], "answerIndex": 0, "explanation": "Each monomeric antibody is a heterotetramer composed of two identical light (L) chains and two identical heavy (H) chains held together by interchain disulfide bonds (H2L2)."}, {"num": 17, "topic": "Cancer & Carcinogens", "tag": "KCET 2017", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2017 Biology Paper", "stem": "The most dreaded property of malignant neoplastic tumors wherein cancerous cells detach from the primary tumor and establish secondary tumors at distant sites via the bloodstream is called:", "extras": [], "options": [{"marker": "A", "text": "Metastasis"}, {"marker": "B", "text": "Contact inhibition"}, {"marker": "C", "text": "Transformation"}, {"marker": "D", "text": "Apoptosis"}], "answerIndex": 0, "explanation": "Metastasis is the dissemination of malignant tumor cells from the primary site through the vascular or lymphatic systems to seed colonies in distant vital organs."}, {"num": 18, "topic": "Cancer & Carcinogens", "tag": "KCET 2016", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2016 Biology Paper", "stem": "Normal animal cells exhibit a regulatory property where contact with neighbouring cells suppresses uncontrolled proliferation. Cancer cells lose this property, which is known as:", "extras": [], "options": [{"marker": "A", "text": "Contact inhibition"}, {"marker": "B", "text": "Metastasis"}, {"marker": "C", "text": "Cellular differentiation"}, {"marker": "D", "text": "Agglutination"}], "answerIndex": 0, "explanation": "Contact inhibition is the biological mechanism whereby cell-cell surface contact halts mitotic division. Loss of contact inhibition is a hallmark of cancerous transformation leading to tumor mass formation."}, {"num": 19, "topic": "Cancer & Carcinogens", "tag": "KCET 2016", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2016 Biology Paper", "stem": "In cancer immunotherapy, which biological response modifier is administered to activate the patient's immune system to destroy tumors?", "extras": [], "options": [{"marker": "A", "text": "\u03b1-interferon"}, {"marker": "B", "text": "Morphine"}, {"marker": "C", "text": "Colostrum"}, {"marker": "D", "text": "Histamine"}], "answerIndex": 0, "explanation": "Tumor cells evade detection by the host immune system; administering \u03b1-interferon serves as a biological response modifier that stimulates natural killer cells and cytotoxic T-cells to attack tumors."}, {"num": 20, "topic": "Drugs & Alcohol Abuse", "tag": "KCET 2015", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2015 Biology Paper", "stem": "Heroin, commonly called 'smack', is chemically known as:", "extras": [], "options": [{"marker": "A", "text": "Diacetylmorphine"}, {"marker": "B", "text": "Tetrahydrocannabinol"}, {"marker": "C", "text": "Benzodiazepine"}, {"marker": "D", "text": "Methylmorphine"}], "answerIndex": 0, "explanation": "Heroin is diacetylmorphine, a bitter, white, odourless crystalline compound synthesized by acetylation of morphine extracted from the latex of the opium poppy Papaver somniferum."}, {"num": 21, "topic": "Drugs & Alcohol Abuse", "tag": "KCET 2015", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2015 Biology Paper", "stem": "Cocaine is an alkaloid obtained from the leaves of Erythroxylum coca that produces euphoria and stimulation by interfering with the transport of which neurotransmitter?", "extras": [], "options": [{"marker": "A", "text": "Dopamine"}, {"marker": "B", "text": "Acetylcholine"}, {"marker": "C", "text": "Serotonin"}, {"marker": "D", "text": "GABA"}], "answerIndex": 0, "explanation": "Cocaine blocks the reuptake transporter of the neurotransmitter dopamine in the central nervous system, causing excessive dopaminergic stimulation and euphoria."}, {"num": 22, "topic": "Lymphoid Organs", "tag": "KCET 2023", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2023 Biology Paper", "stem": "Which of the following lymphoid organs acts as a physiological filter of the blood by trapping blood-borne microorganisms and serves as a major reservoir of erythrocytes?", "extras": [], "options": [{"marker": "A", "text": "Spleen"}, {"marker": "B", "text": "Thymus"}, {"marker": "C", "text": "Peyer's patches"}, {"marker": "D", "text": "Appendix"}], "answerIndex": 0, "explanation": "The spleen is a large bean-shaped secondary lymphoid organ containing lymphocytes and phagocytes; it filters circulating blood-borne microbes and stores a large reserve of erythrocytes."}, {"num": 23, "topic": "Lymphoid Organs", "tag": "KCET 2022", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2022 Biology Paper", "stem": "Which two organs are the primary lymphoid organs where immature lymphocytes differentiate into antigen-sensitive lymphocytes?", "extras": [], "options": [{"marker": "A", "text": "Bone marrow and Thymus"}, {"marker": "B", "text": "Spleen and Lymph nodes"}, {"marker": "C", "text": "Tonsils and Peyer's patches"}, {"marker": "D", "text": "Thymus and Spleen"}], "answerIndex": 0, "explanation": "Bone marrow and the thymus provide the specialized micro-environments for the origin, maturation, and differentiation of B-lymphocytes and T-lymphocytes respectively."}, {"num": 24, "topic": "Immunity & Antibodies", "tag": "KCET 2021", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2021 Biology Paper", "stem": "Rheumatoid arthritis is a classic example of an autoimmune disorder because:", "extras": [], "options": [{"marker": "A", "text": "The body's immune system fails to recognize self-antigens and attacks its own joint tissues"}, {"marker": "B", "text": "It is caused by retroviral destruction of helper T-cells"}, {"marker": "C", "text": "It is transmitted by female Aedes mosquitoes in tropical regions"}, {"marker": "D", "text": "It results from excessive secretion of IgA in the synovial fluid"}], "answerIndex": 0, "explanation": "In autoimmune diseases like rheumatoid arthritis, self-tolerance breaks down, and antibodies/effector T-cells mount an immune assault against host synovial joint tissues."}, {"num": 25, "topic": "Vaccination & Allergies", "tag": "KCET 2020", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2020 Biology Paper", "stem": "Which vaccine is commercially produced on a large scale using recombinant DNA technology in yeast (Saccharomyces cerevisiae)?", "extras": [], "options": [{"marker": "A", "text": "Hepatitis B vaccine"}, {"marker": "B", "text": "Polio oral vaccine"}, {"marker": "C", "text": "BCG vaccine for tuberculosis"}, {"marker": "D", "text": "DPT vaccine for diphtheria"}], "answerIndex": 0, "explanation": "The second-generation Hepatitis B vaccine utilizes recombinant surface antigen (HBsAg) expressed and harvested from the budding yeast Saccharomyces cerevisiae."}, {"num": 26, "topic": "Bacterial & Viral Diseases", "tag": "KCET 2019", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2019 Biology Paper", "stem": "Which larvivorous fish is deliberately introduced into water tanks and ponds to feed on mosquito larvae and control malaria transmission?", "extras": [], "options": [{"marker": "A", "text": "Gambusia"}, {"marker": "B", "text": "Catla"}, {"marker": "C", "text": "Rohu"}, {"marker": "D", "text": "Clarias"}], "answerIndex": 0, "explanation": "Gambusia affinis (mosquito fish) is a surface-feeding predator widely stocked in freshwater bodies for biological vector control of mosquito larvae."}, {"num": 27, "topic": "Bacterial & Viral Diseases", "tag": "KCET 2018", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2018 Biology Paper", "stem": "Aedes aegypti mosquitoes act as vectors for which of the following viral human diseases?", "extras": [], "options": [{"marker": "A", "text": "Dengue and Chikungunya"}, {"marker": "B", "text": "Malaria and Filariasis"}, {"marker": "C", "text": "Typhoid and Amoebiasis"}, {"marker": "D", "text": "Pneumonia and Common cold"}], "answerIndex": 0, "explanation": "Aedes mosquitoes (specifically Aedes aegypti) transmit dengue fever and chikungunya arboviruses."}, {"num": 28, "topic": "Protozoan & Helminthic Diseases", "tag": "KCET 2017", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2017 Biology Paper", "stem": "Which protozoan parasite lives in the human large intestine, causes amoebic dysentery with mucous and blood in stools, and is transmitted mechanically by houseflies?", "extras": [], "options": [{"marker": "A", "text": "Entamoeba histolytica"}, {"marker": "B", "text": "Plasmodium falciparum"}, {"marker": "C", "text": "Trypanosoma gambiense"}, {"marker": "D", "text": "Leishmania donovani"}], "answerIndex": 0, "explanation": "Entamoeba histolytica invades the mucosal lining of the large intestine, ulcerating tissue and causing stools laden with mucous and blood clots; houseflies mechanically transfer cysts."}, {"num": 29, "topic": "Protozoan & Helminthic Diseases", "tag": "KCET 2016", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2016 Biology Paper", "stem": "A patient suffering from internal intestinal bleeding, muscular pain, fever, anemia, and blockage of the intestinal passage is most likely infected with:", "extras": [], "options": [{"marker": "A", "text": "Ascaris lumbricoides (Roundworm)"}, {"marker": "B", "text": "Wuchereria bancrofti (Filarial worm)"}, {"marker": "C", "text": "Microsporum"}, {"marker": "D", "text": "Plasmodium vivax"}], "answerIndex": 0, "explanation": "Ascariasis, caused by the giant roundworm Ascaris lumbricoides, causes physical intestinal obstruction, mucosal micro-hemorrhages, anemia, and nutritional compromise."}, {"num": 30, "topic": "AIDS & Retrovirus", "tag": "KCET 2015", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2015 Biology Paper", "stem": "In the progression of HIV infection into full-blown AIDS, immunodeficiency develops predominantly due to the progressive depletion of which host cell population?", "extras": [], "options": [{"marker": "A", "text": "Helper T-lymphocytes (CD4+ TH cells)"}, {"marker": "B", "text": "B-lymphocytes alone"}, {"marker": "C", "text": "Erythrocytes (RBCs)"}, {"marker": "D", "text": "Blood platelets"}], "answerIndex": 0, "explanation": "HIV uses the CD4 receptor to infect and destroy helper T-lymphocytes (TH). As TH cell counts fall below critical thresholds, opportunistic infections (e.g. Mycobacterium, Toxoplasma) overwhelm the host."}, {"num": 31, "topic": "AIDS & Retrovirus", "tag": "KCET 2023", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2023 Biology Paper", "stem": "During HIV replication, which cell type in the human body continues to produce virus particles continuously, thus acting like an 'HIV factory'?", "extras": [], "options": [{"marker": "A", "text": "Macrophages"}, {"marker": "B", "text": "Neutrophils"}, {"marker": "C", "text": "Erythrocytes"}, {"marker": "D", "text": "Basophils"}], "answerIndex": 0, "explanation": "NCERT explicitly notes: 'The macrophages continue to produce virus and in this way acts like a HIV factory.' Unlike T-cells which lyse rapidly, infected macrophages survive prolonged viral shedding."}, {"num": 32, "topic": "Cancer & Carcinogens", "tag": "KCET 2022", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2022 Biology Paper", "stem": "Which of the following physical carcinogens causes neoplastic transformation of cells by inducing non-ionizing DNA thymine dimer damage?", "extras": [], "options": [{"marker": "A", "text": "UV rays"}, {"marker": "B", "text": "X-rays"}, {"marker": "C", "text": "Gamma rays"}, {"marker": "D", "text": "Alpha particles"}], "answerIndex": 0, "explanation": "Non-ionizing radiation such as Ultraviolet (UV) light penetrates superficial tissues and causes cyclobutane pyrimidine dimers in DNA, leading to skin malignancies."}, {"num": 33, "topic": "Cancer & Carcinogens", "tag": "KCET 2021", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2021 Biology Paper", "stem": "Magnetic Resonance Imaging (MRI) is a superior non-invasive diagnostic technique for detecting cancers of internal organs because it uses:", "extras": [], "options": [{"marker": "A", "text": "Strong magnetic fields and non-ionising radiations"}, {"marker": "B", "text": "High-dose ionizing X-rays"}, {"marker": "C", "text": "Radioactive gamma-emitting iodine tracers"}, {"marker": "D", "text": "Ultrasonic sound waves alone"}], "answerIndex": 0, "explanation": "MRI uses powerful static magnetic fields and harmless radiofrequency pulses (non-ionizing radiation) to accurately map pathological tissue water density without radiation toxicity."}, {"num": 34, "topic": "Drugs & Alcohol Abuse", "tag": "KCET 2020", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2020 Biology Paper", "stem": "Natural cannabinoids (marijuana, hashish, charas, and ganja) are extracted from which parts of the plant Cannabis sativa?", "extras": [], "options": [{"marker": "A", "text": "Inflorescences, flower tops, leaves, and resin"}, {"marker": "B", "text": "Latex of unripe seed pods only"}, {"marker": "C", "text": "Bark and roots"}, {"marker": "D", "text": "Dry mature seeds"}], "answerIndex": 0, "explanation": "Cannabinoids are lipophilic terpene phenolics concentrated in the glandular trichomes of female flower tops, leaves, and resins of Cannabis sativa."}, {"num": 35, "topic": "Drugs & Alcohol Abuse", "tag": "KCET 2019", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2019 Biology Paper", "stem": "Which hallucinogenic solanaceous plants contain belladonna alkaloids with potent anticholinergic psychotropic properties?", "extras": [], "options": [{"marker": "A", "text": "Atropa belladonna and Datura"}, {"marker": "B", "text": "Papaver somniferum and Erythroxylum coca"}, {"marker": "C", "text": "Cannabis sativa and Nicotiana tabacum"}, {"marker": "D", "text": "Digitalis purpurea and Cinchona"}], "answerIndex": 0, "explanation": "Atropa belladonna and Datura contain tropane alkaloids (hyoscyamine, scopolamine, atropine) that induce vivid hallucinations and delirium."}, {"num": 36, "topic": "Drugs & Alcohol Abuse", "tag": "KCET 2018", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2018 Biology Paper", "stem": "Chronic consumption of alcohol over prolonged periods leads to fatal scarring and liver failure known as:", "extras": [], "options": [{"marker": "A", "text": "Liver Cirrhosis"}, {"marker": "B", "text": "Amoebic dysentery"}, {"marker": "C", "text": "Rheumatoid arthritis"}, {"marker": "D", "text": "Elephantiasis"}], "answerIndex": 0, "explanation": "Alcohol metabolism generates toxic acetaldehyde, oxidative stress, and steatohepatitis, eventually leading to permanent fibrotic nodular replacement of liver parenchyma (cirrhosis)."}, {"num": 37, "topic": "Drugs & Alcohol Abuse", "tag": "KCET 2017", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2017 Biology Paper", "stem": "Nicotine present in tobacco stimulates the adrenal medulla to release which hormones into the blood, elevating blood pressure and heart rate?", "extras": [], "options": [{"marker": "A", "text": "Adrenaline and Nor-adrenaline"}, {"marker": "B", "text": "Insulin and Glucagon"}, {"marker": "C", "text": "Thyroxine and Calcitonin"}, {"marker": "D", "text": "Oxytocin and Vasopressin"}], "answerIndex": 0, "explanation": "Nicotine binds nicotinic acetylcholine receptors on chromaffin cells of the adrenal gland, stimulating adrenaline and nor-adrenaline release, raising systemic blood pressure and cardiac rate."}, {"num": 38, "topic": "Immunity & Antibodies", "tag": "KCET 2016", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2016 Biology Paper", "stem": "Administration of preformed antivenom to a victim of a snakebite is an example of:", "extras": [], "options": [{"marker": "A", "text": "Artificial passive immunization"}, {"marker": "B", "text": "Natural active immunization"}, {"marker": "C", "text": "Cell-mediated autoimmune response"}, {"marker": "D", "text": "Innate physical barrier"}], "answerIndex": 0, "explanation": "Injecting preformed neutralizing antibodies raised in an external animal provides immediate life-saving passive immunity without waiting for the patient's own immune system to respond."}, {"num": 39, "topic": "Immunity & Antibodies", "tag": "KCET 2015", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2015 Biology Paper", "stem": "Which of the following white blood cells are cellular barrier phagocytes of innate immunity?", "extras": [], "options": [{"marker": "A", "text": "PMNL-neutrophils and Monocytes"}, {"marker": "B", "text": "T-lymphocytes and B-lymphocytes"}, {"marker": "C", "text": "Erythrocytes and Thrombocytes"}, {"marker": "D", "text": "Basophils producing antibodies"}], "answerIndex": 0, "explanation": "Polymorphonuclear leukocytes (PMNL-neutrophils), blood monocytes, and tissue macrophages are active phagocytes representing the cellular barrier of innate immunity."}, {"num": 40, "topic": "Bacterial & Viral Diseases", "tag": "KCET 2024", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2024 Biology Paper", "stem": "Which of the following is an infectious non-bacterial disease transmitted primarily by sharing contaminated injection needles among intravenous drug abusers?", "extras": [], "options": [{"marker": "A", "text": "Hepatitis B and AIDS"}, {"marker": "B", "text": "Pneumonia and Typhoid"}, {"marker": "C", "text": "Amoebiasis and Ascariasis"}, {"marker": "D", "text": "Ringworm and Filariasis"}], "answerIndex": 0, "explanation": "Both Hepatitis B and HIV/AIDS are blood-borne chronic viral infections readily transmitted between intravenous drug abusers sharing contaminated hypodermic needles."}, {"num": 41, "topic": "Drugs & Alcohol Abuse", "tag": "KCET 2023", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2023 Biology Paper", "stem": "An unpleasant withdrawal syndrome manifesting as anxiety, tremors, nausea, and sweating occurs when a drug-dependent individual abruptly discontinues drug intake due to:", "extras": [], "options": [{"marker": "A", "text": "Physical and physiological dependence"}, {"marker": "B", "text": "Immediate cure of addiction"}, {"marker": "C", "text": "Rebound contact inhibition"}, {"marker": "D", "text": "Production of excessive interferons"}], "answerIndex": 0, "explanation": "Dependence is the state where the body has physiologically adapted to the regular presence of a substance; cessation abruptly disrupts homeostasis, precipitating acute withdrawal syndrome."}, {"num": 42, "topic": "Cancer & Carcinogens", "tag": "KCET 2022", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2022 Biology Paper", "stem": "Genes present in normal human cells that have the potential to cause oncogenic neoplastic transformation when activated inappropriately are called:", "extras": [], "options": [{"marker": "A", "text": "Proto-oncogenes (cellular oncogenes or c-onc)"}, {"marker": "B", "text": "Housekeeping structural genes"}, {"marker": "C", "text": "Transposons"}, {"marker": "D", "text": "Antigen-binding genes"}], "answerIndex": 0, "explanation": "Proto-oncogenes (c-onc) are normal cellular genes regulating growth and cell division. Mutations or chromosomal translocations can convert them into active oncogenes, driving malignant transformation."}, {"num": 43, "topic": "Lymphoid Organs", "tag": "KCET 2021", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2021 Biology Paper", "stem": "The thymus gland is quite large at the time of birth, but with advancing age it:", "extras": [], "options": [{"marker": "A", "text": "Keeps reducing in size and atrophies to a very small size by puberty"}, {"marker": "B", "text": "Continues to enlarge and migrates to the pelvic cavity"}, {"marker": "C", "text": "Transforms into a secondary lymph node"}, {"marker": "D", "text": "Produces all body erythrocytes in adults"}], "answerIndex": 0, "explanation": "The thymus provides the inductive environment for T-cell maturation during fetal and early life, undergoing progressive age-related involution (atrophy) starting around puberty."}, {"num": 44, "topic": "Protozoan & Helminthic Diseases", "tag": "KCET 2020", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2020 Biology Paper", "stem": "Which species of Plasmodium causes the most severe and potentially fatal malignant malaria in humans?", "extras": [], "options": [{"marker": "A", "text": "Plasmodium falciparum"}, {"marker": "B", "text": "Plasmodium vivax"}, {"marker": "C", "text": "Plasmodium malariae"}, {"marker": "D", "text": "Plasmodium ovale"}], "answerIndex": 0, "explanation": "Plasmodium falciparum causes cerebral / malignant tertian malaria, leading to capillary blockage, multi-organ failure, and death if untreated."}, {"num": 45, "topic": "Bacterial & Viral Diseases", "tag": "KCET 2019", "sourceUrl": "https://cetonline.karnataka.gov.in/kea/", "sourceLabel": "KCET 2019 Biology Paper", "stem": "The global eradication of which deadly viral infectious disease represents one of the greatest triumphs of public health vaccination programmes?", "extras": [], "options": [{"marker": "A", "text": "Smallpox"}, {"marker": "B", "text": "Poliomyelitis"}, {"marker": "C", "text": "Common cold"}, {"marker": "D", "text": "Tuberculosis"}], "answerIndex": 0, "explanation": "Global coordinated vaccination campaigns led by the WHO successfully achieved the complete worldwide eradication of smallpox (caused by Variola virus)."}];
+    const NEET_DATA = [{"num": 1, "topic": "Bacterial & Viral Diseases", "tag": "NEET 2024", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2024 Question Paper", "stem": "Match List I with List II:\n\nList I (Disease)\nA. Typhoid\nB. Pneumonia\nC. Filariasis\nD. Ringworm\n\nList II (Causative Pathogen)\nI. Wuchereria bancrofti\nII. Microsporum\nIII. Salmonella typhi\nIV. Streptococcus pneumoniae\n\nChoose the correct answer from the options given below:", "extras": [{"type": "table", "title": "Match List I with List II", "headers": ["List I (Disease)", "List II (Causative Pathogen)"], "rows": [["A. Typhoid", "I. Wuchereria bancrofti"], ["B. Pneumonia", "II. Microsporum"], ["C. Filariasis", "III. Salmonella typhi"], ["D. Ringworm", "IV. Streptococcus pneumoniae"]]}], "options": [{"marker": "A", "text": "A-III, B-IV, C-I, D-II"}, {"marker": "B", "text": "A-I, B-III, C-II, D-IV"}, {"marker": "C", "text": "A-III, B-I, C-IV, D-II"}, {"marker": "D", "text": "A-IV, B-II, C-III, D-I"}], "answerIndex": 0, "explanation": "Typhoid is caused by the bacterium Salmonella typhi (A-III); Pneumonia is caused by Streptococcus pneumoniae (B-IV); Filariasis is caused by the filarial roundworm Wuchereria bancrofti (C-I); Ringworm is caused by dermatophyte fungi such as Microsporum (D-II)."}, {"num": 2, "topic": "Immunity & Antibodies", "tag": "NEET 2024", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2024 Question Paper", "stem": "Which of the following statements about cell-mediated immunity (CMI) is INCORRECT?", "extras": [], "options": [{"marker": "A", "text": "It is mediated by T-lymphocytes"}, {"marker": "B", "text": "It is responsible for graft rejection following tissue transplantation"}, {"marker": "C", "text": "It relies directly on antibodies circulating in blood plasma to neutralize soluble toxins"}, {"marker": "D", "text": "It allows the body to distinguish between 'self' and 'non-self' cells"}], "answerIndex": 2, "explanation": "Circulating antibodies in blood plasma constitute the humoral immune response (antibody-mediated immunity produced by B-lymphocytes), not cell-mediated immunity (CMI), which is mediated by T-lymphocytes."}, {"num": 3, "topic": "Drugs & Alcohol Abuse", "tag": "NEET 2024", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2024 Question Paper", "stem": "Given below are two statements:\nStatement I: Heroin is chemically diacetylmorphine, obtained by acetylation of morphine extracted from Papaver somniferum.\nStatement II: Heroin acts as a central nervous system stimulant and speeds up bodily functions.\n\nIn the light of the above statements, choose the most appropriate answer:", "extras": [], "options": [{"marker": "A", "text": "Both Statement I and Statement II are correct"}, {"marker": "B", "text": "Both Statement I and Statement II are incorrect"}, {"marker": "C", "text": "Statement I is correct but Statement II is incorrect"}, {"marker": "D", "text": "Statement I is incorrect but Statement II is correct"}], "answerIndex": 2, "explanation": "Statement I is correct (heroin is diacetylmorphine obtained from poppy latex). Statement II is incorrect because heroin is an opioid depressant that slows down bodily functions, rather than a stimulant."}, {"num": 4, "topic": "Protozoan & Helminthic Diseases", "tag": "NEET 2023", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2023 Question Paper", "stem": "In the life cycle of Plasmodium, sexual reproduction (fertilisation of gametocytes) and zygote formation occur in:", "extras": [], "options": [{"marker": "A", "text": "Mosquito gut (stomach)"}, {"marker": "B", "text": "Human liver cells"}, {"marker": "C", "text": "Human red blood cells"}, {"marker": "D", "text": "Salivary glands of mosquito"}], "answerIndex": 0, "explanation": "Gametocytes are ingested by the female Anopheles mosquito with its blood meal; fertilisation and maturation of the microgamete and macrogamete take place inside the lumen of the mosquito's gut."}, {"num": 5, "topic": "Immunity & Antibodies", "tag": "NEET 2023", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2023 Question Paper", "stem": "Match List I with List II:\n\nList I (Barrier of Innate Immunity)\nA. Physical barrier\nB. Physiological barrier\nC. Cellular barrier\nD. Cytokine barrier\n\nList II (Example)\nI. Interferons\nII. PMNL-neutrophils and Monocytes\nIII. Skin and Mucous membranes\nIV. Stomach acid and Saliva\n\nChoose the correct option:", "extras": [{"type": "table", "title": "Match Innate Barriers with Examples", "headers": ["List I (Barrier)", "List II (Example)"], "rows": [["A. Physical barrier", "I. Interferons"], ["B. Physiological barrier", "II. PMNL-neutrophils"], ["C. Cellular barrier", "III. Skin and Mucous membranes"], ["D. Cytokine barrier", "IV. Stomach acid and Saliva"]]}], "options": [{"marker": "A", "text": "A-III, B-IV, C-II, D-I"}, {"marker": "B", "text": "A-I, B-II, C-III, D-IV"}, {"marker": "C", "text": "A-III, B-I, C-IV, D-II"}, {"marker": "D", "text": "A-IV, B-III, C-I, D-II"}], "answerIndex": 0, "explanation": "Physical: Skin & Mucus (A-III); Physiological: Acid & Saliva (B-IV); Cellular: PMNL-neutrophils & Monocytes (C-II); Cytokine: Interferons (D-I)."}, {"num": 6, "topic": "Cancer & Carcinogens", "tag": "NEET 2023", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2023 Question Paper", "stem": "Which of the following is a biological response modifier given to cancer patients to activate their immune system and destroy tumors?", "extras": [], "options": [{"marker": "A", "text": "\u03b1-interferon"}, {"marker": "B", "text": "Cyclosporin A"}, {"marker": "C", "text": "Morphine"}, {"marker": "D", "text": "Histamine"}], "answerIndex": 0, "explanation": "Tumor cells evade surveillance by the immune system; administering \u03b1-interferon serves as a biological response modifier that stimulates the host immune response to target neoplastic cells."}, {"num": 7, "topic": "AIDS & Retrovirus", "tag": "NEET 2022", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2022 Question Paper", "stem": "In which of the following cells does HIV replicate to act as an 'HIV factory' without being destroyed immediately?", "extras": [], "options": [{"marker": "A", "text": "Macrophages"}, {"marker": "B", "text": "Helper T-lymphocytes"}, {"marker": "C", "text": "B-lymphocytes"}, {"marker": "D", "text": "Erythrocytes"}], "answerIndex": 0, "explanation": "Macrophages act as an 'HIV factory' because viral RNA is continuously transcribed into viral DNA by reverse transcriptase and translated into new virions while the macrophage remains alive."}, {"num": 8, "topic": "Drugs & Alcohol Abuse", "tag": "NEET 2022", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2022 Question Paper", "stem": "Match the following drugs with their plant sources:\n\n(a) Cocaine &mdash; (i) Papaver somniferum\n(b) Morphine &mdash; (ii) Cannabis sativa\n(c) Marijuana &mdash; (iii) Erythroxylum coca\n(d) Hallucinogen &mdash; (iv) Atropa belladonna\n\nSelect the correct option:", "extras": [{"type": "table", "title": "Match Drug with Plant Source", "headers": ["Drug", "Plant Source"], "rows": [["(a) Cocaine", "(i) Papaver somniferum"], ["(b) Morphine", "(ii) Cannabis sativa"], ["(c) Marijuana", "(iii) Erythroxylum coca"], ["(d) Hallucinogen", "(iv) Atropa belladonna"]]}], "options": [{"marker": "A", "text": "(a)-(iii), (b)-(i), (c)-(ii), (d)-(iv)"}, {"marker": "B", "text": "(a)-(i), (b)-(iii), (c)-(iv), (d)-(ii)"}, {"marker": "C", "text": "(a)-(iii), (b)-(iv), (c)-(i), (d)-(ii)"}, {"marker": "D", "text": "(a)-(ii), (b)-(i), (c)-(iv), (d)-(iii)"}], "answerIndex": 0, "explanation": "Cocaine: Erythroxylum coca (a-iii); Morphine: Papaver somniferum (b-i); Marijuana: Cannabis sativa (c-ii); Hallucinogen: Atropa belladonna (d-iv)."}, {"num": 9, "topic": "Lymphoid Organs", "tag": "NEET 2022", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2022 Question Paper", "stem": "Which of the following is NOT a secondary lymphoid organ?", "extras": [], "options": [{"marker": "A", "text": "Thymus"}, {"marker": "B", "text": "Spleen"}, {"marker": "C", "text": "Lymph nodes"}, {"marker": "D", "text": "Tonsils"}], "answerIndex": 0, "explanation": "Thymus and bone marrow are primary lymphoid organs where lymphocytes originate and mature. Spleen, lymph nodes, tonsils, Peyer's patches, and appendix are secondary lymphoid organs."}, {"num": 10, "topic": "Immunity & Antibodies", "tag": "NEET 2021", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2021 Question Paper", "stem": "Which immunoglobulin is predominantly involved in mediating allergic hypersensitivity reactions?", "extras": [], "options": [{"marker": "A", "text": "IgE"}, {"marker": "B", "text": "IgA"}, {"marker": "C", "text": "IgM"}, {"marker": "D", "text": "IgG"}], "answerIndex": 0, "explanation": "IgE antibodies bind to high-affinity Fc receptors on mast cells and basophils, triggering degranulation and release of histamine upon allergen cross-linking."}, {"num": 11, "topic": "Vaccination & Allergies", "tag": "NEET 2021", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2021 Question Paper", "stem": "A patient bitten by a venomous viper is injected with antivenom. What type of immunity does this medical intervention confer?", "extras": [], "options": [{"marker": "A", "text": "Passive immunity"}, {"marker": "B", "text": "Active immunity"}, {"marker": "C", "text": "Innate cellular immunity"}, {"marker": "D", "text": "Autoimmunity"}], "answerIndex": 0, "explanation": "Antivenom contains preformed antibodies against snake venom. Directly transferring ready-made exogenous antibodies confers immediate passive immunity."}, {"num": 12, "topic": "Bacterial & Viral Diseases", "tag": "NEET 2020", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2020 Question Paper", "stem": "Match the following diseases with the causative organism:\n\n(a) Typhoid &mdash; (i) Wuchereria\n(b) Pneumonia &mdash; (ii) Plasmodium\n(c) Filariasis &mdash; (iii) Salmonella\n(d) Malaria &mdash; (iv) Haemophilus\n\nSelect the correct option:", "extras": [{"type": "table", "title": "Match Disease with Causative Organism", "headers": ["Disease", "Causative Organism"], "rows": [["(a) Typhoid", "(i) Wuchereria"], ["(b) Pneumonia", "(ii) Plasmodium"], ["(c) Filariasis", "(iii) Salmonella"], ["(d) Malaria", "(iv) Haemophilus"]]}], "options": [{"marker": "A", "text": "(a)-(iii), (b)-(iv), (c)-(i), (d)-(ii)"}, {"marker": "B", "text": "(a)-(i), (b)-(iii), (c)-(ii), (d)-(iv)"}, {"marker": "C", "text": "(a)-(iv), (b)-(iii), (c)-(i), (d)-(ii)"}, {"marker": "D", "text": "(a)-(iii), (b)-(i), (c)-(iv), (d)-(ii)"}], "answerIndex": 0, "explanation": "Typhoid: Salmonella (a-iii); Pneumonia: Haemophilus influenzae (b-iv); Filariasis: Wuchereria (c-i); Malaria: Plasmodium (d-ii)."}, {"num": 13, "topic": "Protozoan & Helminthic Diseases", "tag": "NEET 2020", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2020 Question Paper", "stem": "The infectious stage of Plasmodium that enters the human body through the bite of an infected female Anopheles mosquito is:", "extras": [], "options": [{"marker": "A", "text": "Sporozoite"}, {"marker": "B", "text": "Gametocyte"}, {"marker": "C", "text": "Trophozoite"}, {"marker": "D", "text": "Merozoite"}], "answerIndex": 0, "explanation": "Plasmodium enters the human bloodstream as needle-shaped, motile sporozoites injected from the mosquito's salivary glands during a blood meal."}, {"num": 14, "topic": "Cancer & Carcinogens", "tag": "NEET 2020", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2020 Question Paper", "stem": "Which of the following is the most feared characteristic feature of malignant neoplasms?", "extras": [], "options": [{"marker": "A", "text": "Metastasis to distant body sites"}, {"marker": "B", "text": "Contact inhibition with neighbouring tissues"}, {"marker": "C", "text": "Complete confinement within a fibrous capsule"}, {"marker": "D", "text": "Slow localized proliferation causing minimal damage"}], "answerIndex": 0, "explanation": "Metastasis\u2014the shedding of malignant cells into blood or lymph and invasion of distant secondary sites\u2014is the most dangerous and fatal hallmark of malignant tumors."}, {"num": 15, "topic": "Drugs & Alcohol Abuse", "tag": "NEET 2019", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2019 Question Paper", "stem": "Which drug is an effective sedative and painkiller, widely administered to patients who have undergone major surgery?", "extras": [], "options": [{"marker": "A", "text": "Morphine"}, {"marker": "B", "text": "Heroin"}, {"marker": "C", "text": "Amphetamine"}, {"marker": "D", "text": "Cannabinoid"}], "answerIndex": 0, "explanation": "Morphine is a principal phenanthrene alkaloid of opium; clinically, it is an extremely potent narcotic analgesic and sedative indispensable for postoperative pain control."}, {"num": 16, "topic": "Immunity & Antibodies", "tag": "NEET 2019", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2019 Question Paper", "stem": "Colostrum, the yellowish fluid secreted by a mother during the initial days of lactation, is very rich in which antibody that protects the newborn infant?", "extras": [], "options": [{"marker": "A", "text": "IgA"}, {"marker": "B", "text": "IgM"}, {"marker": "C", "text": "IgG"}, {"marker": "D", "text": "IgD"}], "answerIndex": 0, "explanation": "Secretory IgA is the predominant antibody class in human colostrum, coating the neonatal gastrointestinal mucosa to block pathogen adherence."}, {"num": 17, "topic": "Immunity & Antibodies", "tag": "NEET 2018", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2018 Question Paper", "stem": "In which disease does the body's immune system mistakenly attack its own cells, identifying them as foreign?", "extras": [], "options": [{"marker": "A", "text": "Autoimmune disease (e.g. Rheumatoid arthritis)"}, {"marker": "B", "text": "Severe combined immunodeficiency (SCID)"}, {"marker": "C", "text": "Amoebiasis"}, {"marker": "D", "text": "Malaria"}], "answerIndex": 0, "explanation": "Autoimmune disorders arise when self-tolerance fails, causing autoantibodies and autoreactive T-lymphocytes to destroy host tissues, such as the synovial joints in rheumatoid arthritis."}, {"num": 18, "topic": "Bacterial & Viral Diseases", "tag": "NEET 2018", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2018 Question Paper", "stem": "Which of the following sets of diseases are spread through contaminated food and water?", "extras": [], "options": [{"marker": "A", "text": "Typhoid and Amoebiasis"}, {"marker": "B", "text": "Pneumonia and Common cold"}, {"marker": "C", "text": "Malaria and Filariasis"}, {"marker": "D", "text": "Dengue and Chikungunya"}], "answerIndex": 0, "explanation": "Typhoid (Salmonella typhi) and amoebiasis (Entamoeba histolytica) follow the fecal-oral route of transmission via contaminated drinking water and food."}, {"num": 19, "topic": "Lymphoid Organs", "tag": "NEET 2017", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2017 Question Paper", "stem": "Mucosa-associated lymphoid tissue (MALT) is located within the lining of which major tracts?", "extras": [], "options": [{"marker": "A", "text": "Respiratory, digestive, and urogenital tracts"}, {"marker": "B", "text": "Circulatory and endocrine tracts"}, {"marker": "C", "text": "Skeletal and muscular systems"}, {"marker": "D", "text": "Cerebrospinal and cranial tracts"}], "answerIndex": 0, "explanation": "MALT lines the mucosal surfaces of the respiratory, gastrointestinal, and genitourinary tracts, guarding the primary portals of pathogen entry and constituting ~50% of lymphoid tissue."}, {"num": 20, "topic": "AIDS & Retrovirus", "tag": "NEET 2017", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2017 Question Paper", "stem": "Which of the following is a widely used screening diagnostic test for AIDS based on antigen-antibody detection?", "extras": [], "options": [{"marker": "A", "text": "ELISA (Enzyme-Linked Immunosorbent Assay)"}, {"marker": "B", "text": "Widal test"}, {"marker": "C", "text": "Pap smear test"}, {"marker": "D", "text": "Ames test"}], "answerIndex": 0, "explanation": "ELISA is the standard primary screening test used to detect HIV antibodies or antigens in serum samples."}, {"num": 21, "topic": "Cancer & Carcinogens", "tag": "NEET 2016 Phase-I", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET 2016 Phase 1 Paper", "stem": "Which of the following is NOT a carcinogen?", "extras": [], "options": [{"marker": "A", "text": "Interferon"}, {"marker": "B", "text": "X-rays and Gamma rays"}, {"marker": "C", "text": "UV rays"}, {"marker": "D", "text": "Tobacco smoke tar"}], "answerIndex": 0, "explanation": "Interferon is an endogenous antiviral and antineoplastic cytokine (biological response modifier) used in cancer therapy, not a cancer-causing carcinogen."}, {"num": 22, "topic": "Drugs & Alcohol Abuse", "tag": "NEET 2016 Phase-II", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET 2016 Phase 2 Paper", "stem": "Cannabinoid receptors in the human body are principally located in the:", "extras": [], "options": [{"marker": "A", "text": "Brain"}, {"marker": "B", "text": "Spleen"}, {"marker": "C", "text": "Stomach mucosa"}, {"marker": "D", "text": "Kidney nephrons"}], "answerIndex": 0, "explanation": "Cannabinoid CB1 receptors are predominantly expressed across the cerebral cortex, hippocampus, basal ganglia, and cerebellum in the brain."}, {"num": 23, "topic": "Immunity & Antibodies", "tag": "AIPMT 2015", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2015 Paper", "stem": "Grafts rejected in an incompatible tissue transplant recipient are attacked primarily by:", "extras": [], "options": [{"marker": "A", "text": "T-lymphocytes"}, {"marker": "B", "text": "B-lymphocytes"}, {"marker": "C", "text": "Neutrophils"}, {"marker": "D", "text": "Eosinophils"}], "answerIndex": 0, "explanation": "Cell-mediated immunity executed by alloreactive recipient T-lymphocytes recognizes foreign MHC antigens on the graft vascular endothelium and parenchymal cells, causing acute graft rejection."}, {"num": 24, "topic": "Bacterial & Viral Diseases", "tag": "AIPMT 2015", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2015 Paper", "stem": "Which of the following pairs of diseases are caused by bacteria in human beings?", "extras": [], "options": [{"marker": "A", "text": "Typhoid and Pneumonia"}, {"marker": "B", "text": "Malaria and AIDS"}, {"marker": "C", "text": "Ringworm and Amoebiasis"}, {"marker": "D", "text": "Dengue and Common cold"}], "answerIndex": 0, "explanation": "Typhoid (Salmonella typhi) and Pneumonia (Streptococcus pneumoniae) are both bacterial infectious diseases."}, {"num": 25, "topic": "Cancer & Carcinogens", "tag": "AIPMT 2014", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2014 Question Paper", "stem": "Transformation of normal cells into cancerous cells can be induced by physical, chemical, or biological agents collectively termed:", "extras": [], "options": [{"marker": "A", "text": "Carcinogens"}, {"marker": "B", "text": "Allergens"}, {"marker": "C", "text": "Interferons"}, {"marker": "D", "text": "Antibodies"}], "answerIndex": 0, "explanation": "Any agent capable of inducing oncogenic neoplastic transformation\u2014whether ionizing radiation, tobacco benzopyrenes, or oncogenic viruses\u2014is designated a carcinogen."}, {"num": 26, "topic": "Drugs & Alcohol Abuse", "tag": "AIPMT 2014", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2014 Question Paper", "stem": "Which plant yields natural hallucinogens and is also mentioned in classical literature as being used in folk rituals?", "extras": [], "options": [{"marker": "A", "text": "Datura"}, {"marker": "B", "text": "Oryza sativa"}, {"marker": "C", "text": "Pisum sativum"}, {"marker": "D", "text": "Brassica oleracea"}], "answerIndex": 0, "explanation": "Datura and Atropa belladonna possess potent hallucinogenic tropane alkaloids long exploited in folk medicine and rituals."}, {"num": 27, "topic": "Protozoan & Helminthic Diseases", "tag": "NEET / AIPMT 2013", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET 2013 Question Paper", "stem": "In the human host, where does the sexual stage (gametocyte) of Plasmodium begin its development?", "extras": [], "options": [{"marker": "A", "text": "Red blood cells (erythrocytes)"}, {"marker": "B", "text": "Liver hepatocytes"}, {"marker": "C", "text": "Spleen macrophages"}, {"marker": "D", "text": "Blood plasma"}], "answerIndex": 0, "explanation": "A small fraction of intra-erythrocytic Plasmodium merozoites differentiate into male and female sexual forms (gametocytes) within human red blood cells."}, {"num": 28, "topic": "Immunity & Antibodies", "tag": "AIPMT 2012 Mains", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2012 Mains Paper", "stem": "In an antibody molecule (H2L2), the antigen-binding sites are located at:", "extras": [], "options": [{"marker": "A", "text": "Variable regions of both heavy and light chains (Fab region)"}, {"marker": "B", "text": "Constant regions of heavy chains alone (Fc region)"}, {"marker": "C", "text": "Constant regions of light chains only"}, {"marker": "D", "text": "Disulfide bridges connecting the two heavy chains"}], "answerIndex": 0, "explanation": "Antigen-binding specificity is conferred by hypervariable complementarity-determining regions formed jointly by the N-terminal variable domains of one heavy and one light chain ($V_H$ and $V_L$)."}, {"num": 29, "topic": "Vaccination & Allergies", "tag": "AIPMT 2012 Prelims", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2012 Prelims Paper", "stem": "Which of the following drugs quickly reduces the symptoms of an acute allergic reaction?", "extras": [], "options": [{"marker": "A", "text": "Anti-histamines, Adrenaline, and Steroids"}, {"marker": "B", "text": "Morphine and Heroin"}, {"marker": "C", "text": "Penicillin and Ampicillin"}, {"marker": "D", "text": "Interferons and Colostrum"}], "answerIndex": 0, "explanation": "Antihistamines block histamine receptors, adrenaline provides immediate bronchodilation and vasoconstriction, and corticosteroids suppress systemic mast cell and eosinophil inflammation."}, {"num": 30, "topic": "AIDS & Retrovirus", "tag": "AIPMT 2011", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2011 Question Paper", "stem": "Human Immunodeficiency Virus (HIV) has a protein coat enclosing a genome of:", "extras": [], "options": [{"marker": "A", "text": "Two identical single-stranded RNA molecules"}, {"marker": "B", "text": "Double-stranded DNA"}, {"marker": "C", "text": "Single-stranded DNA"}, {"marker": "D", "text": "Double-stranded RNA"}], "answerIndex": 0, "explanation": "HIV is an enveloped lentivirus containing a diploid genome composed of two identical copies of plus-sense single-stranded RNA (+ssRNA) along with reverse transcriptase enzymes."}, {"num": 31, "topic": "Bacterial & Viral Diseases", "tag": "NEET 2024", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2024 Question Paper", "stem": "Which pathogenic bacterium migrates from the small intestine to other human organs through the bloodstream, causing sustained high fever (39\u00b0 to 40\u00b0C) and intestinal perforation in severe cases?", "extras": [], "options": [{"marker": "A", "text": "Salmonella typhi"}, {"marker": "B", "text": "Streptococcus pneumoniae"}, {"marker": "C", "text": "Haemophilus influenzae"}, {"marker": "D", "text": "Clostridium tetani"}], "answerIndex": 0, "explanation": "Salmonella typhi invades Peyer's patches in the terminal ileum, causing deep mucosal ulcerations, potential perforation, bacteremia, and prolonged high fever."}, {"num": 32, "topic": "Protozoan & Helminthic Diseases", "tag": "NEET 2023", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2023 Question Paper", "stem": "Which of the following helminths is transmitted to humans via contaminated soil, water, and raw unwashed vegetables bearing its microscopic eggs?", "extras": [], "options": [{"marker": "A", "text": "Ascaris lumbricoides"}, {"marker": "B", "text": "Wuchereria bancrofti"}, {"marker": "C", "text": "Plasmodium falciparum"}, {"marker": "D", "text": "Trichophyton"}], "answerIndex": 0, "explanation": "Embryonated eggs of the roundworm Ascaris lumbricoides pass out with feces, persisting in soil and infecting humans through contaminated raw crops or unboiled water."}, {"num": 33, "topic": "Immunity & Antibodies", "tag": "NEET 2022", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2022 Question Paper", "stem": "Which type of acquired immune response is characterized by an intensified, highly accelerated antibody release following re-exposure to the same pathogen?", "extras": [], "options": [{"marker": "A", "text": "Secondary (Anamnestic) response"}, {"marker": "B", "text": "Primary response"}, {"marker": "C", "text": "Innate physical response"}, {"marker": "D", "text": "Passive maternal response"}], "answerIndex": 0, "explanation": "The secondary or anamnestic immune response relies on memory B- and T-cells formed during initial priming, mounting a rapid, high-titer antibody defense upon rechallenge."}, {"num": 34, "topic": "Cancer & Carcinogens", "tag": "NEET 2021", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2021 Question Paper", "stem": "Computed Tomography (CT) scans used for the early diagnosis of internal neoplastic tumors generate 3D internal cross-sectional images using:", "extras": [], "options": [{"marker": "A", "text": "X-rays"}, {"marker": "B", "text": "Radio waves and magnetic fields"}, {"marker": "C", "text": "Ultrasound sound beams"}, {"marker": "D", "text": "Infrared thermal sensors"}], "answerIndex": 0, "explanation": "CT (Computed Tomography) rotates multiple collimated X-ray beams around the body to construct detailed three-dimensional tomographic cross-sections of internal organs."}, {"num": 35, "topic": "Drugs & Alcohol Abuse", "tag": "NEET 2020", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2020 Question Paper", "stem": "Excessive intake of cocaine causes acute central nervous system stimulation characterized by:", "extras": [], "options": [{"marker": "A", "text": "Intense euphoria, increased energy, and hallucinations"}, {"marker": "B", "text": "Profound respiratory depression and sleepiness"}, {"marker": "C", "text": "Immediate loss of blood pressure"}, {"marker": "D", "text": "Cirrhosis of the liver"}], "answerIndex": 0, "explanation": "By blocking dopamine reuptake, high doses of cocaine trigger extreme psychomotor stimulation, hyper-alertness, intense euphoria, and sensory hallucinations."}, {"num": 36, "topic": "AIDS & Retrovirus", "tag": "NEET 2019", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2019 Question Paper", "stem": "The average incubation time-lag between initial HIV infection and the clinical appearance of full-blown AIDS symptoms is usually:", "extras": [], "options": [{"marker": "A", "text": "5 to 10 years"}, {"marker": "B", "text": "2 to 3 days"}, {"marker": "C", "text": "1 to 2 weeks"}, {"marker": "D", "text": "20 to 30 years"}], "answerIndex": 0, "explanation": "Due to prolonged clinical latency where the virus replicates slowly in macrophages and lymphoid tissue, AIDS symptoms typically manifest 5 to 10 years post-infection."}, {"num": 37, "topic": "Immunity & Antibodies", "tag": "NEET 2018", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2018 Question Paper", "stem": "T-lymphocytes themselves do not directly secrete antibodies into blood, but instead:", "extras": [], "options": [{"marker": "A", "text": "Help B-lymphocytes produce antibodies"}, {"marker": "B", "text": "Engulf and digest whole RBCs"}, {"marker": "C", "text": "Transform into memory erythrocytes"}, {"marker": "D", "text": "Directly synthesize histamine molecules"}], "answerIndex": 0, "explanation": "Helper T-cells ($T_H$) recognize processed antigen presented by MHC class II molecules on B-cells, secreting cytokines that stimulate B-cells to differentiate into antibody-secreting plasma cells."}, {"num": 38, "topic": "Bacterial & Viral Diseases", "tag": "NEET 2017", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2017 Question Paper", "stem": "Which of the following is an effective barrier preventing entry of microbes through the respiratory, gastrointestinal, and urogenital tracts?", "extras": [], "options": [{"marker": "A", "text": "Mucus coating of the epithelial lining"}, {"marker": "B", "text": "Antibodies in synovial fluid"}, {"marker": "C", "text": "Histamine release by basophils"}, {"marker": "D", "text": "Bone marrow microenvironment"}], "answerIndex": 0, "explanation": "The sticky mucus blanket secreted by goblet cells along the luminal surface of internal tracts traps foreign bacteria and viruses as a primary physical barrier."}, {"num": 39, "topic": "Drugs & Alcohol Abuse", "tag": "NEET 2016 Phase-I", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET 2016 Phase 1 Paper", "stem": "The side effects of anabolic steroid abuse in female athletes include:", "extras": [], "options": [{"marker": "A", "text": "Masculinisation, enlargement of clitoris, and deepening of voice"}, {"marker": "B", "text": "Excessive lactation and breast enlargement"}, {"marker": "C", "text": "Increased estrogen synthesis and female voice pitch"}, {"marker": "D", "text": "Immediate permanent cure of asthma"}], "answerIndex": 0, "explanation": "Exogenous synthetic androgens cause virilisation in females: hirsutism (excessive facial/body hair), clitoromegaly, deepening of the vocal pitch, and severe menstrual irregularities."}, {"num": 40, "topic": "Protozoan & Helminthic Diseases", "tag": "NEET 2015", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT / NEET 2015 Paper", "stem": "In malaria endemic areas, the female mosquito takes up which stage of Plasmodium during its blood meal to perpetuate the disease transmission cycle?", "extras": [], "options": [{"marker": "A", "text": "Gametocytes"}, {"marker": "B", "text": "Sporozoites"}, {"marker": "C", "text": "Schizonts"}, {"marker": "D", "text": "Cryptozoites"}], "answerIndex": 0, "explanation": "Only mature erythrocytic gametocytes (micro- and macrogametocytes) can survive digestion in the mosquito midgut and proceed to fertilisation."}, {"num": 41, "topic": "Cancer & Carcinogens", "tag": "AIPMT 2014", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2014 Question Paper", "stem": "Which of the following techniques is based on the microscopic examination of thin sections of suspected tumor tissue stained by a pathologist?", "extras": [], "options": [{"marker": "A", "text": "Biopsy and Histopathological study"}, {"marker": "B", "text": "ELISA test"}, {"marker": "C", "text": "Widal agglutination test"}, {"marker": "D", "text": "Radioimmunoassay (RIA)"}], "answerIndex": 0, "explanation": "Histopathological examination of a tissue biopsy remains the definitive diagnostic gold standard for differentiating benign from malignant neoplasms."}, {"num": 42, "topic": "Drugs & Alcohol Abuse", "tag": "AIPMT 2013", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET / AIPMT 2013 Paper", "stem": "Smoking tobacco increases the carbon monoxide (CO) content in blood, leading to:", "extras": [], "options": [{"marker": "A", "text": "Reduced concentration of haembound oxygen and systemic hypoxia"}, {"marker": "B", "text": "Increased oxygen saturation of hemoglobin"}, {"marker": "C", "text": "Destruction of all circulating leukocytes"}, {"marker": "D", "text": "Immediate production of IgA in the lungs"}], "answerIndex": 0, "explanation": "Carbon monoxide binds hemoglobin with ~200-fold higher affinity than oxygen, forming stable carboxyhemoglobin, impairing oxygen delivery to tissues."}, {"num": 43, "topic": "Immunity & Antibodies", "tag": "AIPMT 2012 Mains", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2012 Mains Paper", "stem": "Fetus receives maternal antibodies across the placenta during pregnancy. This natural transfer is an example of:", "extras": [], "options": [{"marker": "A", "text": "Natural passive immunity"}, {"marker": "B", "text": "Artificial active immunity"}, {"marker": "C", "text": "Cell-mediated immunity"}, {"marker": "D", "text": "Innate physiological barrier"}], "answerIndex": 0, "explanation": "Transplacental transfer of maternal IgG antibodies into fetal circulation supplies preformed immunity without requiring the fetal immune system to synthesize them (natural passive immunity)."}, {"num": 44, "topic": "AIDS & Retrovirus", "tag": "AIPMT 2012 Prelims", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2012 Prelims Paper", "stem": "Anti-retroviral drugs currently used in the medical management of AIDS:", "extras": [], "options": [{"marker": "A", "text": "Can only prolong the life of the patient but cannot prevent inevitable death"}, {"marker": "B", "text": "Completely eradicate the provirus from all human cells within 2 weeks"}, {"marker": "C", "text": "Confer lifetime active immunity against all strains of retroviruses"}, {"marker": "D", "text": "Function by stimulating rapid division of erythroid stem cells"}], "answerIndex": 0, "explanation": "Highly active antiretroviral therapy (HAART) suppresses viral replication and viral load, delaying disease progression, but does not eradicate integrated proviral reservoirs."}, {"num": 45, "topic": "Protozoan & Helminthic Diseases", "tag": "AIPMT 2011", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2011 Question Paper", "stem": "Which of the following symptoms is NOT typically associated with amoebic dysentery caused by Entamoeba histolytica?", "extras": [], "options": [{"marker": "A", "text": "Alveolar spaces filled with fluid causing bluish fingernails"}, {"marker": "B", "text": "Constipation and abdominal cramps"}, {"marker": "C", "text": "Stools with excess mucous"}, {"marker": "D", "text": "Stools containing dark blood clots"}], "answerIndex": 0, "explanation": "Alveoli filled with fluid and cyanotic bluish fingernails are hallmark clinical signs of severe bacterial pneumonia, not intestinal amoebiasis."}, {"num": 46, "topic": "Cancer & Carcinogens", "tag": "AIPMT 2010", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2010 Question Paper", "stem": "Chemical carcinogens present in tobacco smoke have been established as the primary causative factor in which form of cancer?", "extras": [], "options": [{"marker": "A", "text": "Lung cancer"}, {"marker": "B", "text": "Bone marrow leukemia"}, {"marker": "C", "text": "Prostate cancer"}, {"marker": "D", "text": "Breast cancer"}], "answerIndex": 0, "explanation": "Polycyclic aromatic hydrocarbons, nitrosamines, and tar in inhaled cigarette smoke directly damage bronchial respiratory epithelium, causing lung carcinoma."}, {"num": 47, "topic": "Vaccination & Allergies", "tag": "NEET 2024", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2024 Question Paper", "stem": "Why are children in urban metro cities of India increasingly prone to allergies and asthma?", "extras": [], "options": [{"marker": "A", "text": "Due to lower immunity and high environmental sensitivity resulting from an overly protected lifestyle early in life"}, {"marker": "B", "text": "Because of genetic absence of B-lymphocytes"}, {"marker": "C", "text": "Due to lack of blood group matching at birth"}, {"marker": "D", "text": "Because they are infected with retroviruses from birth"}], "answerIndex": 0, "explanation": "NCERT notes that modern metro lifestyle provides an overly sanitized, protected early environment, leading to impaired immune priming and heightened sensitivity to common environmental allergens."}, {"num": 48, "topic": "Drugs & Alcohol Abuse", "tag": "NEET 2023", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2023 Question Paper", "stem": "In adolescent males, the severe side effects of anabolic steroid abuse include:", "extras": [], "options": [{"marker": "A", "text": "Acne, reduction in testicle size, decreased sperm count, and breast enlargement (gynecomastia)"}, {"marker": "B", "text": "Enhanced height and delayed fusion of long bone growth centers"}, {"marker": "C", "text": "Permanent elimination of aggression and mood swings"}, {"marker": "D", "text": "Hypertrophy of liver without any toxicity"}], "answerIndex": 0, "explanation": "Exogenous steroids feedback-inhibit the pituitary gonadotropins (LH/FSH), leading to testicular atrophy, azoospermia, gynecomastia, and premature epiphyseal closure causing stunted stature."}, {"num": 49, "topic": "Bacterial & Viral Diseases", "tag": "NEET 2022", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2022 Question Paper", "stem": "Mary Mallon was a classic historical carrier who continued to spread which bacterial disease for years through the food she cooked?", "extras": [], "options": [{"marker": "A", "text": "Typhoid"}, {"marker": "B", "text": "Cholera"}, {"marker": "C", "text": "Plague"}, {"marker": "D", "text": "Pneumonia"}], "answerIndex": 0, "explanation": "Mary Mallon ('Typhoid Mary') was an asymptomatic chronic carrier of Salmonella typhi who transmitted typhoid fever to numerous households via contaminated food."}, {"num": 50, "topic": "Immunity & Antibodies", "tag": "NEET 2021", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2021 Question Paper", "stem": "Which of the following cells can act as phagocytes in human tissues to destroy invading microbes?", "extras": [], "options": [{"marker": "A", "text": "Macrophages and PMNL-neutrophils"}, {"marker": "B", "text": "Helper T-cells and Cytotoxic T-cells"}, {"marker": "C", "text": "Erythrocytes and Platelets"}, {"marker": "D", "text": "Mast cells and Basophils"}], "answerIndex": 0, "explanation": "Tissue macrophages (derived from monocytes) and circulating polymorphonuclear neutrophils (PMNLs) are active professional phagocytes that engulf and lyse microbial invaders."}, {"num": 51, "topic": "AIDS & Retrovirus", "tag": "NEET 2020", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2020 Question Paper", "stem": "Which of the following opportunistic pathogens commonly cause severe secondary infections in advanced AIDS patients due to profound T-cell deficiency?", "extras": [], "options": [{"marker": "A", "text": "Mycobacterium, Toxoplasma, and various fungi"}, {"marker": "B", "text": "Rhino viruses causing common cold only"}, {"marker": "C", "text": "Lactobacillus acidophilus"}, {"marker": "D", "text": "Nitrosomonas and Nitrobacter"}], "answerIndex": 0, "explanation": "Profound CD4+ T-cell collapse compromises cell-mediated surveillance, precipitating life-threatening opportunistic infections by atypical mycobacteria, the protozoan Toxoplasma gondii, and fungal pathogens (Pneumocystis, Candida)."}, {"num": 52, "topic": "Cancer & Carcinogens", "tag": "NEET 2019", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2019 Question Paper", "stem": "Which of the following ionizing radiations causes deep double-strand DNA damage leading to neoplastic transformation?", "extras": [], "options": [{"marker": "A", "text": "X-rays and Gamma rays"}, {"marker": "B", "text": "Visible light"}, {"marker": "C", "text": "Infrared rays"}, {"marker": "D", "text": "Radio waves"}], "answerIndex": 0, "explanation": "Ionizing radiations such as X-rays and gamma rays generate reactive free radicals that cleave phosphodiester backbones, inducing mutagenic chromosomal breaks."}, {"num": 53, "topic": "Drugs & Alcohol Abuse", "tag": "NEET 2018", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2018 Question Paper", "stem": "Barbiturates, amphetamines, and benzodiazepines are clinically prescribed to treat mental illnesses like depression and insomnia, but are frequently abused because they:", "extras": [], "options": [{"marker": "A", "text": "Alter mood, perception, and induce psychological dependence"}, {"marker": "B", "text": "Provide lifetime immunity against cancer"}, {"marker": "C", "text": "Act as broad-spectrum antibiotics"}, {"marker": "D", "text": "Stimulate production of erythrocytes in bone marrow"}], "answerIndex": 0, "explanation": "These psychotropic pharmaceuticals alter neurotransmitter dynamics, providing sedation or euphoria; without clinical supervision, repeated use leads to tolerance and dependence."}, {"num": 54, "topic": "Protozoan & Helminthic Diseases", "tag": "NEET 2017", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "NEET (UG) 2017 Question Paper", "stem": "Heat and moisture help fungi thrive in skin folds, such as the groin or between toes, causing ringworm. Transmission occurs through:", "extras": [], "options": [{"marker": "A", "text": "Direct contact with infected soil, towels, clothes, or combs"}, {"marker": "B", "text": "Inhaling respiratory aerosols during sneezing"}, {"marker": "C", "text": "Bite of infected female Anopheles mosquitoes"}, {"marker": "D", "text": "Drinking unboiled well water alone"}], "answerIndex": 0, "explanation": "Dermatophyte fungal spores are highly contagious, shed on exfoliated skin scales and transmitted through shared towels, bedding, combs, and clothing."}, {"num": 55, "topic": "Immunity & Antibodies", "tag": "AIPMT 2010", "sourceUrl": "https://neet.nta.nic.in/", "sourceLabel": "AIPMT 2010 Question Paper", "stem": "Which of the following statements correctly differentiates active immunity from passive immunity?", "extras": [], "options": [{"marker": "A", "text": "Active immunity involves antibody synthesis by the host and has memory; passive immunity involves preformed antibodies without memory"}, {"marker": "B", "text": "Active immunity is fast acting and short lived; passive immunity is slow acting and permanent"}, {"marker": "C", "text": "Active immunity is produced only in response to snakebite; passive immunity is produced by vaccines"}, {"marker": "D", "text": "There is no immunological difference between active and passive immunity"}], "answerIndex": 0, "explanation": "Active immunity requires the host's own immune system to respond to antigens, generating lasting memory B- and T-cells. Passive immunity delivers immediate protection via donor antibodies but provides no long-term memory."}];
+
+    const state = {
+      view: 'home',            // 'home' | 'kcet' | 'neet' | 'notes'
+      mode: 'doc',             // 'doc' | 'quiz'
+      showAllAnswers: true,    // for document mode
+      searchQuery: '',
+      topicFilter: 'All',
+      kcetSelections: {},     // { qNum: selectedOptIdx }
+      neetSelections: {}      // { qNum: selectedOptIdx }
+    };
+
+    function switchView(viewName, defaultMode = null) {
+      state.view = viewName;
+      if (defaultMode) {
+        state.mode = defaultMode;
+      }
+      state.searchQuery = '';
+      state.topicFilter = 'All';
+
+      const homeView = document.getElementById('homeView');
+      const bankView = document.getElementById('bankView');
+      const notesView = document.getElementById('notesView');
+
+      const navHome = document.getElementById('navHomeBtn');
+      const navKcet = document.getElementById('navKcetBtn');
+      const navNeet = document.getElementById('navNeetBtn');
+      const navNotes = document.getElementById('navNotesBtn');
+
+      homeView.classList.add('hidden');
+      bankView.classList.add('hidden');
+      notesView.classList.add('hidden');
+
+      const navClassActive = 'px-3 py-1.5 rounded-lg bg-white text-indigo-700 shadow-xs transition';
+      const navClassInactive = 'px-3 py-1.5 rounded-lg hover:text-slate-900 transition';
+
+      navHome.className = (viewName === 'home') ? navClassActive : navClassInactive;
+      navKcet.className = (viewName === 'kcet') ? navClassActive : navClassInactive;
+      navNeet.className = (viewName === 'neet') ? navClassActive : navClassInactive;
+      navNotes.className = (viewName === 'notes') ? navClassActive : navClassInactive;
+
+      if (viewName === 'home') {
+        homeView.classList.remove('hidden');
+        updateHomeStats();
+      } else if (viewName === 'notes') {
+        notesView.classList.remove('hidden');
+      } else if (viewName === 'kcet' || viewName === 'neet') {
+        bankView.classList.remove('hidden');
+        setupBankView();
+        renderActiveBank();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function setupBankView() {
+      const isKcet = (state.view === 'kcet');
+      const bankTitle = document.getElementById('bankTitle');
+      const bankSubtitle = document.getElementById('bankSubtitle');
+
+      if (isKcet) {
+        bankTitle.textContent = "KCET Human Health & Disease Question Bank (45 Questions)";
+        bankSubtitle.textContent = "Karnataka CET Biology Previous Year Questions & Aligned NCERT Items";
+      } else {
+        bankTitle.textContent = "NEET PYQ Human Health & Disease Question Bank (55 Questions)";
+        bankSubtitle.textContent = "AIPMT & NEET National Entrance Previous Year Questions (2000–2024)";
+      }
+
+      // Build topic filter pills
+      const data = isKcet ? KCET_DATA : NEET_DATA;
+      const topics = ['All', ...new Set(data.map(q => q.topic))];
+      const pillsContainer = document.getElementById('topicFilterPills');
+      pillsContainer.innerHTML = topics.map(top => {
+        const active = (top === state.topicFilter);
+        return `<button type="button" class="top-pill px-2.5 py-1 rounded-full font-semibold transition ${active ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}" data-topic="${top}">${top}</button>`;
+      }).join('');
+
+      pillsContainer.querySelectorAll('.top-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.topicFilter = btn.getAttribute('data-topic');
+          setupBankView();
+          renderActiveBank();
+        });
+      });
+
+      // Update Mode button styling
+      const docBtn = document.getElementById('modeDocBtn');
+      const quizBtn = document.getElementById('modeQuizBtn');
+      const modeActive = 'px-3 py-1.5 rounded-lg bg-white text-indigo-700 shadow-xs transition';
+      const modeInactive = 'px-3 py-1.5 rounded-lg hover:text-slate-900 transition';
+      docBtn.className = (state.mode === 'doc') ? modeActive : modeInactive;
+      quizBtn.className = (state.mode === 'quiz') ? modeActive : modeInactive;
+
+      // Quiz banner visibility
+      const quizBanner = document.getElementById('quizBanner');
+      if (state.mode === 'quiz') {
+        quizBanner.classList.remove('hidden');
+        updateQuizBannerScore();
+      } else {
+        quizBanner.classList.add('hidden');
+      }
+    }
+
+    function getActiveDataset() {
+      return (state.view === 'kcet') ? KCET_DATA : NEET_DATA;
+    }
+
+    function getActiveSelections() {
+      return (state.view === 'kcet') ? state.kcetSelections : state.neetSelections;
+    }
+
+    function renderActiveBank() {
+      const data = getActiveDataset();
+      const selections = getActiveSelections();
+      const container = document.getElementById('questionsContainer');
+
+      const filtered = data.filter(q => {
+        const matchTopic = (state.topicFilter === 'All' || q.topic === state.topicFilter);
+        const matchSearch = (!state.searchQuery || 
+          q.stem.toLowerCase().includes(state.searchQuery.toLowerCase()) || 
+          q.tag.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+          q.topic.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+          q.explanation.toLowerCase().includes(state.searchQuery.toLowerCase())
+        );
+        return matchTopic && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-xl border border-slate-200 p-8 text-center text-slate-500 text-sm">
+            No questions matched your search or filter criteria. Try adjusting your search query.
+          </div>
+        `;
+        renderMatrix(data);
+        return;
+      }
+
+      container.innerHTML = filtered.map(q => renderQuestionCard(q, selections)).join('');
+      renderMatrix(data);
+      updateHomeStats();
+      if (state.mode === 'quiz') {
+        updateQuizBannerScore();
+      }
+    }
+
+    function renderQuestionCard(q, selections) {
+      const isQuiz = (state.mode === 'quiz');
+      const userSelected = selections[q.num];
+      const hasAnswered = (userSelected !== undefined);
+      const isCorrect = (userSelected === q.answerIndex);
+
+      // Render extras if present (e.g. matching tables)
+      let extrasHtml = '';
+      if (q.extras && q.extras.length > 0) {
+        q.extras.forEach(extra => {
+          if (extra.type === 'table') {
+            extrasHtml += `
+              <div class="my-3 overflow-x-auto">
+                <table class="text-xs border border-slate-200 rounded-lg overflow-hidden w-full max-w-md bg-slate-50">
+                  <thead class="bg-slate-100 font-bold text-slate-700">
+                    <tr>
+                      ${extra.headers.map(h => `<th class="border-b border-slate-200 px-3 py-1.5 text-left">${h}</th>`).join('')}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${extra.rows.map(r => `
+                      <tr class="border-b border-slate-100">
+                        ${r.map(c => `<td class="px-3 py-1.5">${c}</td>`).join('')}
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            `;
+          }
+        });
+      }
+
+      // Render options
+      const optionsHtml = q.options.map((opt, idx) => {
+        const isOptCorrect = (idx === q.answerIndex);
+        if (isQuiz) {
+          // Quiz mode interactive option styling
+          let btnClass = 'w-full text-left p-3 rounded-xl border text-xs sm:text-sm font-medium transition flex items-start gap-2.5 opt-btn ';
+          if (!hasAnswered) {
+            btnClass += 'border-slate-200 bg-white hover:bg-indigo-50/50 hover:border-indigo-300 text-slate-700';
+          } else if (idx === userSelected) {
+            if (isCorrect) {
+              btnClass += 'border-emerald-500 bg-emerald-50 text-emerald-950 font-bold';
+            } else {
+              btnClass += 'border-rose-500 bg-rose-50 text-rose-950 font-bold';
+            }
+          } else if (isOptCorrect) {
+            btnClass += 'border-emerald-500 bg-emerald-50/80 text-emerald-950 font-bold';
+          } else {
+            btnClass += 'border-slate-200 bg-slate-50 text-slate-400 opacity-60';
+          }
+
+          const badgeClass = (!hasAnswered) ? 'bg-slate-100 text-slate-700' :
+                             (idx === userSelected && isCorrect) ? 'bg-emerald-600 text-white' :
+                             (idx === userSelected && !isCorrect) ? 'bg-rose-600 text-white' :
+                             (isOptCorrect) ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-500';
+
+          return `
+            <button type="button" class="${btnClass}" data-qnum="${q.num}" data-optidx="${idx}" ${hasAnswered ? 'disabled' : ''}>
+              <span class="inline-flex items-center justify-center w-5 h-5 rounded-md text-xs font-bold shrink-0 ${badgeClass}">${opt.marker}</span>
+              <span class="leading-relaxed">${opt.text}</span>
+            </button>
+          `;
+        } else {
+          // Document Mode styling
+          const showKey = state.showAllAnswers;
+          let optClass = 'p-2.5 rounded-xl border text-xs sm:text-sm flex items-start gap-2.5 ';
+          if (showKey && isOptCorrect) {
+            optClass += 'border-emerald-400 bg-emerald-50/60 font-semibold text-emerald-950';
+          } else {
+            optClass += 'border-slate-200 bg-white text-slate-700';
+          }
+          const badgeClass = (showKey && isOptCorrect) ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-600';
+          return `
+            <div class="${optClass}">
+              <span class="inline-flex items-center justify-center w-5 h-5 rounded-md text-xs font-bold shrink-0 ${badgeClass}">${opt.marker}</span>
+              <span class="leading-relaxed">${opt.text}</span>
+            </div>
+          `;
+        }
+      }).join('');
+
+      // Explanation box
+      let explanationHtml = '';
+      const shouldShowExplanation = (!isQuiz && state.showAllAnswers) || (isQuiz && hasAnswered);
+      if (shouldShowExplanation) {
+        const statusBadge = isQuiz ? (
+          isCorrect ? '<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">Correct!</span>' :
+                      '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 text-[10px] font-bold">Incorrect</span>'
+        ) : '';
+
+        explanationHtml = `
+          <div class="mt-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 space-y-1">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-bold text-slate-900">
+                Correct Answer: Option ${q.options[q.answerIndex].marker} &bull; ${q.options[q.answerIndex].text}
+              </span>
+              ${statusBadge}
+            </div>
+            <p class="leading-relaxed text-slate-600 mt-1">${q.explanation}</p>
+          </div>
+        `;
+      }
+
+      return `
+        <article id="q-${q.num}" class="q-card bg-white rounded-xl border border-slate-200 p-5 shadow-xs transition hover:border-slate-300">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center justify-center px-2 py-0.5 rounded-md bg-indigo-600 text-white text-xs font-bold">
+                Q${q.num}
+              </span>
+              <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-xs font-semibold">
+                ${q.tag}
+              </span>
+            </div>
+            <span class="px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-medium">
+              ${q.topic}
+            </span>
+          </div>
+
+          <h3 class="text-sm sm:text-base font-semibold text-slate-900 leading-relaxed mb-3">
+            ${q.stem.replace(/\n/g, '<br>')}
+          </h3>
+
+          ${extrasHtml}
+
+          <div class="space-y-2 mt-3">
+            ${optionsHtml}
+          </div>
+
+          ${explanationHtml}
+        </article>
+      `;
+    }
+
+    function renderMatrix(data) {
+      const selections = getActiveSelections();
+      const grid = document.getElementById('matrixGrid');
+      grid.innerHTML = data.map(q => {
+        const userSelected = selections[q.num];
+        const isAnswered = (userSelected !== undefined);
+        let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-200';
+        if (state.mode === 'quiz' && isAnswered) {
+          if (userSelected === q.answerIndex) {
+            statusClass = 'bg-emerald-600 text-white border-emerald-600';
+          } else {
+            statusClass = 'bg-rose-600 text-white border-rose-600';
+          }
+        } else if (state.mode === 'doc' && state.showAllAnswers) {
+          statusClass = 'bg-indigo-50 text-indigo-800 border-indigo-200';
+        }
+        return `
+          <a href="#q-${q.num}" class="py-1 px-1 rounded border text-xs font-bold transition flex items-center justify-center gap-0.5 ${statusClass}" title="Q${q.num}: Ans ${q.options[q.answerIndex].marker}">
+            <span>Q${q.num}</span>
+            <span class="text-[10px] opacity-75">${q.options[q.answerIndex].marker}</span>
+          </a>
+        `;
+      }).join('');
+    }
+
+    function updateHomeStats() {
+      const kcetAnswered = Object.keys(state.kcetSelections).length;
+      let kcetCorrect = 0;
+      Object.keys(state.kcetSelections).forEach(qNum => {
+        const q = KCET_DATA.find(item => item.num === Number(qNum));
+        if (q && state.kcetSelections[qNum] === q.answerIndex) kcetCorrect++;
+      });
+      const kcetPct = kcetAnswered ? Math.round((kcetCorrect / kcetAnswered) * 100) : 0;
+      document.getElementById('statKcetProgress').textContent = `${kcetAnswered} / 45`;
+      document.getElementById('statKcetScore').textContent = `Score: ${kcetCorrect} correct (${kcetPct}%)`;
+
+      const neetAnswered = Object.keys(state.neetSelections).length;
+      let neetCorrect = 0;
+      Object.keys(state.neetSelections).forEach(qNum => {
+        const q = NEET_DATA.find(item => item.num === Number(qNum));
+        if (q && state.neetSelections[qNum] === q.answerIndex) neetCorrect++;
+      });
+      const neetPct = neetAnswered ? Math.round((neetCorrect / neetAnswered) * 100) : 0;
+      document.getElementById('statNeetProgress').textContent = `${neetAnswered} / 55`;
+      document.getElementById('statNeetScore').textContent = `Score: ${neetCorrect} correct (${neetPct}%)`;
+    }
+
+    function updateQuizBannerScore() {
+      const isKcet = (state.view === 'kcet');
+      const data = isKcet ? KCET_DATA : NEET_DATA;
+      const selections = isKcet ? state.kcetSelections : state.neetSelections;
+
+      const total = data.length;
+      const attempted = Object.keys(selections).length;
+      let correct = 0;
+      Object.keys(selections).forEach(qNum => {
+        const q = data.find(item => item.num === Number(qNum));
+        if (q && selections[qNum] === q.answerIndex) correct++;
+      });
+      const wrong = attempted - correct;
+      const accuracy = attempted ? Math.round((correct / attempted) * 100) : 0;
+
+      document.getElementById('quizTotal').textContent = total;
+      document.getElementById('quizAttempted').textContent = attempted;
+      document.getElementById('quizCorrect').textContent = correct;
+      document.getElementById('quizWrong').textContent = wrong;
+      document.getElementById('quizAccuracy').textContent = `${accuracy}%`;
+    }
+
+    // Navigation Listeners
+    document.getElementById('brandHomeBtn').addEventListener('click', () => switchView('home'));
+    document.getElementById('navHomeBtn').addEventListener('click', () => switchView('home'));
+    document.getElementById('navKcetBtn').addEventListener('click', () => switchView('kcet'));
+    document.getElementById('navNeetBtn').addEventListener('click', () => switchView('neet'));
+    document.getElementById('navNotesBtn').addEventListener('click', () => switchView('notes'));
+
+    document.getElementById('heroStartKcetBtn').addEventListener('click', () => switchView('kcet', 'doc'));
+    document.getElementById('heroStartNeetBtn').addEventListener('click', () => switchView('neet', 'doc'));
+    document.getElementById('heroOpenNotesBtn').addEventListener('click', () => switchView('notes'));
+
+    document.getElementById('cardKcetDocBtn').addEventListener('click', () => switchView('kcet', 'doc'));
+    document.getElementById('cardKcetQuizBtn').addEventListener('click', () => switchView('kcet', 'quiz'));
+    document.getElementById('cardNeetDocBtn').addEventListener('click', () => switchView('neet', 'doc'));
+    document.getElementById('cardNeetQuizBtn').addEventListener('click', () => switchView('neet', 'quiz'));
+
+    document.getElementById('backToPortalBtn').addEventListener('click', () => switchView('home'));
+    document.getElementById('notesBackHomeBtn').addEventListener('click', () => switchView('home'));
+
+    // Option Click Event Delegation
+    document.getElementById('questionsContainer').addEventListener('click', (e) => {
+      const btn = e.target.closest('.opt-btn');
+      if (!btn || state.mode !== 'quiz') return;
+      const qNum = Number(btn.getAttribute('data-qnum'));
+      const optIdx = Number(btn.getAttribute('data-optidx'));
+      if (state.view === 'kcet') {
+        state.kcetSelections[qNum] = optIdx;
+      } else if (state.view === 'neet') {
+        state.neetSelections[qNum] = optIdx;
+      }
+      renderActiveBank();
+    });
+
+    // Mode Switching
+    document.getElementById('modeDocBtn').addEventListener('click', () => switchView(state.view, 'doc'));
+    document.getElementById('modeQuizBtn').addEventListener('click', () => switchView(state.view, 'quiz'));
+
+    // Toggle Answer Key in Document View
+    document.getElementById('toggleAnswersBtn').addEventListener('click', () => {
+      state.showAllAnswers = !state.showAllAnswers;
+      document.getElementById('toggleAnswersBtn').textContent = state.showAllAnswers ? 'Hide Answer Key' : 'Show Answer Key';
+      renderActiveBank();
+    });
+
+    // Reset Quiz
+    document.getElementById('resetQuizBtn').addEventListener('click', () => {
+      if (state.view === 'kcet') {
+        state.kcetSelections = {};
+      } else if (state.view === 'neet') {
+        state.neetSelections = {};
+      }
+      renderActiveBank();
+    });
+
+    // Search Input
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      state.searchQuery = e.target.value;
+      renderActiveBank();
+    });
+
+    // Print Button
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+    document.getElementById('notesPrintBtn').addEventListener('click', () => window.print());
+
+    // Initial View setup
+    switchView('home');
+  </script>
+</body>
+</html>
